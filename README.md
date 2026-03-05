@@ -1,3 +1,3 @@
 # feccheck
 
-Python code for "estimating" student progression status under various scenarios.
+Python code for estimating student progression status under different scenarios.
