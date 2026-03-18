@@ -1,4 +1,5 @@
 *.csv
 *.xlsx
+__pycache__/
 fec_updates.xlsx
 runme_*.py
