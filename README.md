@@ -1,6 +1,5 @@
 # feccheck
 
-<<<<<<< HEAD
 Python code for "estimating" student progression status under various scenarios.
 
 This tool is specifically designed for the Electrical Engineering department (EEE) to automate and simulate Faculty Examination Committee (FEC) progression decisions.
@@ -42,6 +41,8 @@ The simulations generated in the Excel output include:
 
 ## Notes for Developers and AI Assistants
 
+**Before making changes, please read the [`ai_primer.md`](ai_primer.md) file!**
+
 * **MATLAB Legacy**: This codebase is a port of a legacy MATLAB script. You may notice artifacts of this history, such as 1-based indexing comments, variables named similarly to MATLAB cell arrays/structs, and certain logic patterns preserved to maintain strict output parity with the old system.
 * **Primary Data Structure (`stinfo`)**: Data is heavily passed around as a list of dictionaries (`stinfo`). Each student record typically contains:
   - `sinfo`: Basic array of student metadata (ID, Name, Academic Program).
@@ -49,6 +50,3 @@ The simulations generated in the Excel output include:
   - `srec`: A `pandas.DataFrame` detailing every course registration, mark (`perc`), symbol, and credits earned.
 * **Data Modification**: Helper methods in `FECCheck` (like `flagsuppspassed` or `flagpassedwithmark`) create deep copies of a student's `ystats` and `srec` DataFrames, mutate them to simulate outcomes, and recalculate intermediate statistics like Term/Cumulative GPAs.
 * **Dependencies**: Heavy reliance on `pandas` for tabular data manipulation, and `openpyxl`/`xlsxwriter` for formatted Excel reporting with header comments.
-=======
-Python code for estimating student progression status under different scenarios.
->>>>>>> 1a1f2e0a2c465e8e2a3e2afe84fc5dd413a5cebd
