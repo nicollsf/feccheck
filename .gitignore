@@ -4,3 +4,4 @@ __pycache__/
 fec_updates.xlsx
 !fec_updates-EXAMPLE.xlsx
 runme_*.py
+attic/
