@@ -16,12 +16,12 @@ ME_CORE = [
 # Note: MATLAB `menecore = {{1,'EEE4119F'}}` means: select 1 course from the list (which is just EEE4119F). 
 # This looks like a list of requirements: each inner list is a group, where the first element is the number required.
 ME_NECORE = [
-    [1, 'EEE4119F'] 
+    [2, 'EEE4117F', 'EEE4118F', 'EEE4119F'] 
 ]
 # Note: MATLAB `mececore = {{48,...}}` means: select courses totaling 48 credits from the list.
 ME_CECORE = [
-    [48, 'EEE4117F', 'EEE4118F', 'EEE4119F', 'EEE4086F', 'EEE4114F', 
-    'EEE4120F', 'EEE4123C', 'HUB4045F']
+    [48, 'EEE4117F', 'EEE4118F', 'EEE4119F', 'EEE4114F', 
+    'EEE4120F', 'HUB4045F', 'HUB4049F']
 ]
 
 # MATLAB: eecode, eecore, eenecore, eececore
@@ -39,8 +39,8 @@ EE_NECORE = [
     [1, 'EEE4126F', 'EEE4118F', 'EEE4121F']
 ]
 EE_CECORE = [
-    [48, 'EEE4126F', 'EEE4118F', 'EEE4121F', 'EEE4114F', 'EEE4105C', 
-    'EEE4116F', 'EEE4117F', 'EEE4122C', 'EEE4123C', 'HUB4045F']
+    [48, 'EEE4126F', 'EEE4118F', 'EEE4121F', 'EEE4114F',
+    'EEE4117F', 'HUB4049F', 'HUB4049F']
 ]
 
 # MATLAB: eccode, eccore, ecnecore, eccecore
@@ -59,9 +59,8 @@ EC_NECORE = [
     [2, 'EEE4114F','EEE4118F','EEE4120F', 'EEE4121F']
 ]
 EC_CECORE = [
-    [48, 'EEE4118F', 'EEE4119F', 'EEE4120F', 'EEE4121F', 'EEE4086F', 
-    'EEE4114F', 'EEE4105C', 'EEE4122C', 'CSC3002F', 'CSC3003S', 
-    'CSC3021F', 'CSC3022F', 'CSC3022H', 'CSC3023F', 'HUB4045F']
+    [48, 'EEE4114F', 'EEE4118F', 'EEE4120F', 'EEE4121F',
+    'CSC3002F', 'CSC3003S', 'CSC3021F', 'CSC3022F', 'CSC3022H', 'CSC3023F', 'HUB4049F', 'HUB4049F']
 ]
 
 # MATLAB: Assemble into single structure

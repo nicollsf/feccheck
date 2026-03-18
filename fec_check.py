@@ -531,8 +531,15 @@ class FECCheck:
         # Certificate for core completed
         tcert = self.gentcert(strec)
         
-        # Total credits passed (using the 'cre' column)
-        totalcr = srec_df['cre'].sum()
+        # Identify years registered in EEE
+        ia = ystats_df['preg'].isin(EEE_PROGS)
+        eee_years = ystats_df[ia]['yr'].unique()
+        
+        # Credits count if taken during EEE years
+        is_ee_year = srec_df['yt'].isin(eee_years)
+        
+        # Total credits passed towards current degree
+        totalcr = srec_df.loc[is_ee_year, 'cre'].sum()
         
         # GPA
         fyreg = ystats_df['yr'].min()
@@ -807,6 +814,12 @@ class FECCheck:
         else:
             np2crpy = 9999.0 if creds_needed > 0 else 0.0
 
+        # Calculate estimated AYOS
+        expected_duration = 5 if aspect else 4
+        credits_per_year = qres['rcurcr'] / expected_duration
+        years_to_finish = int(np.ceil(creds_needed / credits_per_year)) if credits_per_year > 0 else 0
+        est_ayos = max(1, min(4, 5 - years_to_finish))
+
         # Limits for decisions
         # Define thresholds for Normal (4-year) versus Aspect (5-year) students
         if not aspect:
@@ -904,6 +917,7 @@ class FECCheck:
             'ssreg': ssreg, 'leavf': leavf,
             'ccrp': ccrp, 'lcrp': lcrp, 'totalcr': qres['totalcr'], 'rcurcr': qres['rcurcr'],
             'np1crpy': np1crpy, 'np2crpy': np2crpy,
+            'est_ayos': est_ayos,
             'gpa': qres['gpa'], 'eedur': qres['eedur'], 'res4022': qres['res4022'],
             'tcert': qres['tcert'],
             'suppdes': suppdes, 'suppdecr': suppdecr,
@@ -1030,14 +1044,30 @@ class FECCheck:
                 for equiv_list in cequivs:
                     if equiv_list[0] == req_course:
                         for item in equiv_list[1:]:
-                            try:
-                                srecp_match_indices = srecp_df[srecp_df['course'] == item].index.tolist()
-                                if srecp_match_indices:
+                            if isinstance(item, (list, tuple)):
+                                all_satisfied = True
+                                current_match_indices = []
+                                for sub_course in item:
+                                    matches = srecp_df[srecp_df['course'] == sub_course].index.tolist()
+                                    if matches:
+                                        current_match_indices.extend(matches)
+                                    else:
+                                        all_satisfied = False
+                                        break
+                                
+                                if all_satisfied:
                                     is_satisfied = True
-                                    srecp_indices.extend(srecp_match_indices)
+                                    srecp_indices.extend(current_match_indices)
                                     break
-                            except:
-                                pass
+                            else:
+                                try:
+                                    srecp_match_indices = srecp_df[srecp_df['course'] == item].index.tolist()
+                                    if srecp_match_indices:
+                                        is_satisfied = True
+                                        srecp_indices.extend(srecp_match_indices)
+                                        break
+                                except:
+                                    pass
                         if is_satisfied: break
 
             # Build evidence string (using the original srec index via pipmap)
@@ -1090,8 +1120,19 @@ class FECCheck:
             required_credits = item[0]
             clist = item[1:]
             
+            # Expand clist to include equivalent courses
+            expanded_clist = set(clist)
+            for c in clist:
+                for equiv_list in cequivs:
+                    if equiv_list[0] == c:
+                        for eq_item in equiv_list[1:]:
+                            if isinstance(eq_item, (list, tuple)):
+                                expanded_clist.update(eq_item)
+                            else:
+                                expanded_clist.add(eq_item)
+
             # Filter passed records for those in the elective core list
-            sreci_df = srecp_df[srecp_df['course'].isin(clist)]
+            sreci_df = srecp_df[srecp_df['course'].isin(expanded_clist)]
             
             nce = sreci_df['cre'].sum()  # number of credits earned
             
@@ -1115,6 +1156,8 @@ class FECCheck:
         'pc': "Progression code to be reported",
         'pmess': "Message explaining reported progression code",
         'aspect': "At some stage student was registered under ASPECT code",
+        'ayosn': "Student AYOS number from CRS",
+        'eayosn': "Estimated AYOS based on credits remaining",
         'tfer': "Transferring student (0 no, 1 internal, 2 external, 3 problem)",
         'eedur': "Number of years registered in department", 
         'ubdreg': "Unbroken registration in department since entering department",
@@ -1125,8 +1168,6 @@ class FECCheck:
         'crpc': "Number of credits passed current (this) year", 
         'totcr': "Total number of credits passed", 
         'rcurcr': "Required number of credits in programme",
-        'np1crpy': "Avg credits/year to finish in N+1 years",
-        'np2crpy': "Avg credits/year to finish in N+2 years",
         'gpa': "Current GPA",
         'coresat': "Flag for all core degree requirements met",
         'res4022': "Result (percentage) for EEE4022 (-1 if not complete)",
@@ -1134,9 +1175,48 @@ class FECCheck:
         'supp/des': "List of courses for which OS/Supp/DE outstanding",
         'cmissing': "List of courses/requirements outstanding",
         'nfcy': "Number of courses failed current year",
-        'cfcy': "List of courses failed current year"
+        'cfcy': "List of courses failed current year",
+        'np1crpy': "Avg credits/year to finish in N+1 years",
+        'np2crpy': "Avg credits/year to finish in N+2 years"
     }
         
+    def _parse_ayosn(self, ayosn_str: Any) -> Union[int, str]:
+        """Convert text AYOS representation to numeric (1-6)."""
+        if not isinstance(ayosn_str, str):
+            return ayosn_str
+        s = ayosn_str.lower()
+        if 'first' in s: return 1
+        if 'second' in s: return 2
+        if 'third' in s: return 3
+        if 'fourth' in s: return 4
+        if 'fifth' in s: return 5
+        if 'sixth' in s: return 6
+        return ayosn_str
+
+    def _adjust_column_widths(self, worksheet, dataframe: pd.DataFrame):
+        """Autofit column widths for an openpyxl worksheet, with exceptions."""
+        for i, column_name in enumerate(dataframe.columns):
+            column_letter = get_column_letter(i + 1)
+            
+            if column_name in ['name', 'cmissing']:
+                worksheet.column_dimensions[column_letter].width = 25
+                continue
+
+            # Calculate max length of the column content
+            max_length = 0
+            # Check header length
+            if len(str(column_name)) > max_length:
+                max_length = len(str(column_name))
+            
+            # Check data length if dataframe is not empty
+            if not dataframe.empty:
+                col_max_len = dataframe[column_name].astype(str).map(len).max()
+                if pd.notna(col_max_len) and col_max_len > max_length:
+                    max_length = int(col_max_len)
+
+            adjusted_width = max_length + 2
+            worksheet.column_dimensions[column_letter].width = adjusted_width
+
     def writenotes(self, fname: str) -> None:
         """Write notes sheet to Excel"""
 
@@ -1159,6 +1239,13 @@ class FECCheck:
         try:
             with pd.ExcelWriter(fname, engine='xlsxwriter') as writer:
                 notes_df.to_excel(writer, sheet_name='Notes', index=False)
+                worksheet = writer.sheets['Notes']
+                
+                # Autofit column width
+                max_len = notes_df['Notes'].astype(str).map(len).max()
+                header_len = len(notes_df.columns[0])
+                final_width = max(max_len, header_len) + 2
+                worksheet.set_column(0, 0, final_width)
             print(f"Notes sheet written to {fname}.")
         except Exception as e:
              print(f"Failed to write notes sheet to Excel: {e}")
@@ -1175,6 +1262,11 @@ class FECCheck:
                 # Coresat is a flag: True if all elements in pcs['tcert']['Sat'] are True
                 coresat = pcs['tcert']['Sat'].all() if pcs['tcert'] is not None else False
 
+                # Extract AYOS number from ystats DataFrame
+                ystats_df = strec.get('ystats')
+                ayosn_raw = ystats_df.iloc[-1]['ayosn'] if ystats_df is not None and len(ystats_df) > 0 else ''
+                ayosn = self._parse_ayosn(ayosn_raw)
+
                 output_data.append({
                     'campusid': strec['sinfo'][1],
                     'name': strec['sinfo'][0],
@@ -1182,6 +1274,8 @@ class FECCheck:
                     'pc': pcs['pc'],
                     'pmess': pcs['pmess'],
                     'aspect': pcs['aspect'],
+                    'ayosn': ayosn,
+                    'eayosn': pcs['est_ayos'],
                     'tfer': pcs['tfer'],
                     'eedur': pcs['eedur'],
                     'ubdreg': pcs['ubdreg'],
@@ -1192,8 +1286,6 @@ class FECCheck:
                     'crpc': pcs['ccrp'],
                     'totcr': pcs['totalcr'],
                     'rcurcr': pcs['rcurcr'],
-                    'np1crpy': pcs['np1crpy'],
-                    'np2crpy': pcs['np2crpy'],
                     'gpa': pcs['gpa'],
                     'coresat': 1.0 if coresat else 0.0,
                     'res4022': pcs['res4022'],
@@ -1202,6 +1294,8 @@ class FECCheck:
                     'cmissing': ','.join(pcs['cmissing']),
                     'nfcy': pcs['nfcy'],
                     'cfcy': ','.join(pcs['ccyfailed']),
+                    'np1crpy': pcs['np1crpy'],
+                    'np2crpy': pcs['np2crpy'],
                 })
         
         otab = pd.DataFrame(output_data)
@@ -1221,6 +1315,9 @@ class FECCheck:
                         comment_text = f"{description}"
                         header_comment = Comment(text=comment_text, author="Progression Report")
                         worksheet[cell_address].comment = header_comment
+
+                # Adjust column widths
+                self._adjust_column_widths(worksheet, otab)
 
             print(f"Progression table for {shname} written to {fname}.")
         except Exception as e:
@@ -1249,6 +1346,11 @@ class FECCheck:
             # Coresat is a flag: True if all elements in pcs['tcert']['Sat'] are True
             coresat = pcres['pcs']['tcert']['Sat'].all() if pcres['pcs']['tcert'] is not None else False
 
+            # Extract AYOS number from ystats DataFrame
+            ystats_df = strec.get('ystats')
+            ayosn_raw = ystats_df.iloc[-1]['ayosn'] if ystats_df is not None and len(ystats_df) > 0 else ''
+            ayosn = self._parse_ayosn(ayosn_raw)
+
             output_data.append({
                 'campusid': strec['sinfo'][1],
                 'name': strec['sinfo'][0],
@@ -1256,6 +1358,8 @@ class FECCheck:
                 'pc': pcres['pc'],
                 'pmess': pcres['pmess'],
                 'aspect': pcres['pcs']['aspect'],
+                'ayosn': ayosn,
+                'eayosn': pcres['pcs']['est_ayos'],
                 'tfer': pcres['pcs']['tfer'],
                 'ubdreg': pcres['pcs']['ubdreg'],
                 'eedur': pcres['pcs']['eedur'],
@@ -1266,8 +1370,6 @@ class FECCheck:
                 'crpc': pcres['pcs']['ccrp'],
                 'totcr': pcres['pcs']['totalcr'],
                 'rcurcr': pcres['pcs']['rcurcr'],
-                'np1crpy': pcres['pcs']['np1crpy'],
-                'np2crpy': pcres['pcs']['np2crpy'],
                 'gpa': pcres['pcs']['gpa'],
                 'coresat': 1.0 if coresat else 0.0,
                 'res4022': pcres['pcs']['res4022'],
@@ -1275,6 +1377,8 @@ class FECCheck:
                 'supp/des': suppnames,
                 'cmissing': cmissingstr,
                 'cfcy': pcres['cfcy'],
+                'np1crpy': pcres['pcs']['np1crpy'],
+                'np2crpy': pcres['pcs']['np2crpy'],
             })
         
         otab = pd.DataFrame(output_data)
@@ -1283,6 +1387,10 @@ class FECCheck:
         try:
             with pd.ExcelWriter(fname, engine='openpyxl', mode='a', if_sheet_exists='replace') as writer:
                 otab.to_excel(writer, sheet_name=shname, index=False)
+                worksheet = writer.sheets[shname]
+                
+                # Adjust column widths
+                self._adjust_column_widths(worksheet, otab)
             print(f"Final output table for {shname} written to {fname}.")
         except Exception as e:
              print(f"Failed to write final output table for {shname} to Excel: {e}")

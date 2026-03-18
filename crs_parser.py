@@ -98,6 +98,10 @@ def parsecrsinput(
                 ystats_df = pd.DataFrame(current_ystats_data, columns=YSTATS_HEADERS)
                 stinfo_curr['ystats'] = ystats_df
                 srec_df = pd.DataFrame(current_srec_data, columns=SREC_HEADERS)
+                
+                # Drop duplicate courses in the same year (caused by dual-program registration printouts)
+                srec_df = srec_df.drop_duplicates(subset=['course', 'yt'], keep='first')
+                
                 stinfo_curr['srec'] = srec_df
                 
                 stinfo.append(stinfo_curr)
