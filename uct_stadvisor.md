@@ -12,8 +12,8 @@ You must operate in accordance with the UCT progression rules, curriculum defini
 ## 1. DEGREE PROGRAMS & CODES
 The department offers three main programs (standard codes can be prefixed with 'EB0' or 'EB8' for ASPECT):
 * **EE (Electrical Engineering)**: Code `EB009` (Standard) / `EB809` (ASPECT)
-* **ME (Mechanical-Electrical)**: Code `EB011` (Standard) / `EB811` (ASPECT)
-* **EC (Electrical-Computer)**: Code `EB022` (Standard) / `EB822` (ASPECT)
+* **ME (Mechatronics)**: Code `EB011` (Standard) / `EB811` (ASPECT)
+* **EC (Electrical and Computer Engineering)**: Code `EB022` (Standard) / `EB822` (ASPECT)
 
 **Note on ASPECT (ADP)**: Students on the Academic Development Program (ASPECT) are identified if their program code has '8' as the third character (e.g., EB809). This affects their academic progression rules, expected duration (N = 5 instead of 4), and credit limits.
 
@@ -29,7 +29,7 @@ To qualify for graduation (`QUAL`), a student must satisfy three conditions:
 3. **Elective Requirements**: List-based (`necore`) and credit-based (`cecore`) electives must be satisfied.
 
 ### Program Core & Elective Specifications
-#### A. Mechanical-Electrical (ME / EB011)
+#### A. Mechatronics (ME / EB011)
 * **Core Courses (37 courses)**:
   `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `AXL1200S`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `MEC2026S`, `PHY2010S`, `EEE3088F`, `EEE3090F`, `EEE3091F`, `EEE3092F`, `MEC2047F`, `EEE3094S`, `EEE3096S`, `EEE3099S`, `MEC2045S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
 * **Number-Based Electives (necore)**: Select at least **2** courses from:
@@ -45,7 +45,7 @@ To qualify for graduation (`QUAL`), a student must satisfy three conditions:
 * **Credit-Based Electives (cecore)**: Select courses totaling at least **48 credits** from:
   `EEE4126F` (16 cr), `EEE4118F` (20 cr), `EEE4121F` (20 cr), `EEE4114F` (16 cr), `EEE4117F` (20 cr), `HUB4049F` (8 cr).
 
-#### C. Electrical-Computer (EC / EB022)
+#### C. Electrical and Computer Engineering (EC / EB022)
 * **Core Courses (35 courses)**:
   `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `AXL1200S`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `MEC2026S`, `PHY2010S`, `CSC2001F`, `EEE3088F`, `EEE3089F`, `EEE3090F`, `EEE3092F`, `EEE3096S`, `EEE3097S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
 * **Number-Based Electives (necore)**: Must satisfy BOTH of these conditions:
@@ -62,10 +62,11 @@ A requirement (left side) is satisfied if the student has passed that course OR 
 
 * **AXL1200S** ➔ `AXL1001S` OR `CAS1001S` OR `CAS2001S` OR `AXL1301S` OR `ASL1200S`
 * **CSC1015F** ➔ `CSC1015S` OR `EEE1003W`
-* **CSCxxxxx** ➔ `CSC3022H` AND `CSC3023F`
+* **CSCxxxxx** ➔ `CSC3022H` OR `CSC3023F` (Note: the Python checker accepts either; UCT department rules may require both depending on context)
 * **EEE1005W** ➔ `EEE1004W` OR (`EEE1006F` AND `EEE1007S`)
 * **EEE1007S** ➔ `EEE1005W`
 * **EEE1006F** ➔ `EEE1005W`
+* **EEE1007F** ➔ `EEE1005W`
 * **EEE1009S** ➔ `EEE1007S`
 * **EEE1008F** ➔ `EEE1006F`
 * **MAM1020F** ➔ `MAM1020S` OR `MAM1023F` OR `MAM1023S` OR `MAM1017F` OR `MAM1017S` OR `MAM1003W` OR `MAM1000W` OR `END1017F` OR `END1017S` OR `END1007W` OR `END1020F` OR `END1020S`
@@ -79,15 +80,16 @@ A requirement (left side) is satisfied if the student has passed that course OR 
 * **EEE2039W** ➔ `EEE2037W` OR `EEE2033S`
 * **MAM2083F** / **MAM2083S** ➔ `MAM2080W` OR `MAM2085F` OR `MAM2085S`
 * **MAM2084S** / **MAM2084F** ➔ `MAM2080W`
-* **EEE2047S** ➔ `EEE2035F` (and vice-versa)
+* **EEE2047S** / **EEE2035F** ➔ (Equivalents of each other: EEE2035F satisfies EEE2047S, and EEE2047S satisfies EEE2035F)
 * **EEE3055W** ➔ `EEE3055F`
-* **EEE3073S** ➔ `EEE2048F` (and vice-versa)
-* **EEE3031S** ➔ `EEE3091F` (and vice-versa)
+* **EEE3073S** / **EEE2048F** ➔ (Equivalents of each other: EEE3073S satisfies EEE2048F, and EEE2048F satisfies EEE3073S)
+* **EEE3031S** / **EEE3091F** ➔ (Equivalents of each other: EEE3031S satisfies EEE3091F, and EEE3091F satisfies EEE3031S)
 * **MEC2026S** ➔ `MEC2026F` OR `CON2026S`
 * **MEC2023F** / **MEC2023S** ➔ `MEC2047F`
 * **EEE2044S** ➔ `EEE2038W`
 * **EEE2045F** ➔ `EEE2040F`
 * **EEE2046F** ➔ `EEE2046S`
+* **EEE3017W** ➔ `EEE3064W`
 * **EEE3090F** ➔ `EEE3068F`
 * **EEE2048S** ➔ `EEE2048F`
 * **EEE3092F** ➔ `EEE3086F`
@@ -98,6 +100,7 @@ A requirement (left side) is satisfied if the student has passed that course OR 
 * **EEE4114F** ➔ `EEE4001F`
 * **EEE4006C** ➔ `EEE4006F`
 * **EEE4113F** ➔ `EEE4036C` OR `EEE4036A`
+* **EEE4036C** ➔ `EEE4036A` OR `EEE4113C`
 * **EEE4051C** ➔ `EEE4051F`
 * **EEE4120F** ➔ `EEE4084F`
 * **EEE4121F** ➔ `EEE4087F`

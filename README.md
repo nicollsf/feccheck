@@ -20,7 +20,7 @@ The codebase is divided into three primary modules:
    - Includes an `apply_update` feature to overlay manual/updated marks from an Excel file (e.g., late results) onto the existing student records before processing.
 
 3. **`program_defs.py` (Curriculum Rules)**
-   - Contains the hardcoded curriculum rules for programs: Mechanical-Electrical (`EB011`), Electrical (`EB009`), and Electrical-Computer (`EB022`).
+   - Contains the hardcoded curriculum rules for programs: Mechatronics (`EB011`), Electrical (`EB009`), and Electrical and Computer Engineering (`EB022`).
    - Defines core courses (`CORE`), elective courses by number (`NECORE`), and elective courses by credit total (`CECORE`).
    - Provides a comprehensive `COURSE_EQUIVALENCIES` list (e.g., mapping old course codes to new ones, or listing acceptable alternatives like `MAM1020F` vs `MAM1000W`).
 
