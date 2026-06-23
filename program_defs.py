@@ -2,7 +2,6 @@ from typing import List, Dict, Union, Any
 
 # --- Programme Definitions ---
 
-# MATLAB: mecode, mecore, menecore, mececore
 ME_CODE = 'EB011'
 ME_CORE = [
     'CSC1015F', 'EEE1008F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 'AXL1200S', 
@@ -13,18 +12,16 @@ ME_CORE = [
     'EEE3094S', 'EEE3096S', 'EEE3099S', 'MEC2045S', 'COMPSTUD', 'EEE3000X', 
     'EEE4113F', 'CML4607F', 'EEE4125C', 'EEE4124C', 'EEE4022S'
 ]
-# Note: MATLAB `menecore = {{1,'EEE4119F'}}` means: select 1 course from the list (which is just EEE4119F). 
-# This looks like a list of requirements: each inner list is a group, where the first element is the number required.
+# Note: number-based electives group definition. Each inner list has the format [number_required, course_code_1, course_code_2, ...].
 ME_NECORE = [
     [2, 'EEE4117F', 'EEE4118F', 'EEE4119F'] 
 ]
-# Note: MATLAB `mececore = {{48,...}}` means: select courses totaling 48 credits from the list.
+# Note: credit-based electives group definition. Each group has the format [min_credits_required, course_code_1, ...].
 ME_CECORE = [
     [48, 'EEE4117F', 'EEE4118F', 'EEE4119F', 'EEE4114F', 
     'EEE4120F', 'HUB4045F', 'HUB4049F']
 ]
 
-# MATLAB: eecode, eecore, eenecore, eececore
 EE_CODE = 'EB009'
 EE_CORE = [
     'CSC1015F', 'EEE1008F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 'AXL1200S', 
@@ -43,7 +40,6 @@ EE_CECORE = [
     'EEE4117F', 'HUB4049F', 'HUB4049F']
 ]
 
-# MATLAB: eccode, eccore, ecnecore, eccecore
 EC_CODE = 'EB022'
 EC_CORE = [
     'CSC1015F', 'EEE1008F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 'AXL1200S', 
@@ -63,8 +59,7 @@ EC_CECORE = [
     'CSC3002F', 'CSC3003S', 'CSC3021F', 'CSC3022F', 'CSC3022H', 'CSC3023F', 'HUB4049F', 'HUB4049F']
 ]
 
-# MATLAB: Assemble into single structure
-# We use a list of dictionaries in Python for the structure array.
+# Combine all programme specifications into a single configurations list.
 PROGRAM_SPECS: List[Dict[str, Any]] = [
     {
         'prog': 'ME', 
@@ -89,18 +84,17 @@ PROGRAM_SPECS: List[Dict[str, Any]] = [
     }
 ]
 
-# MATLAB: caddavail
-# Additional courses not yet specified that contribute to core
+# Additional courses not yet specified that contribute to core requirements.
 ADDITIONAL_AVAILABLE_COURSES: List[str] = []
 
-# MATLAB: cequivs
 # Equivalent courses structure: the first element is the required course, 
-# and the rest are courses that satisfy that requirement. An inner list/tuple 
+# and the rest are courses that satisfy that requirement. An inner list 
 # means ALL courses inside must be satisfied.
-
-# In Python, a list of lists/tuples works fine for translation.
-# Union[str, List[str]] handles the case where a course is replaced by a single course name (str) 
-# or by a required group (List[str] or tuple).
+#
+# Note on suffix variants: Where a course code doesn't end with a term suffix 
+# (e.g., F: first semester, S: second semester, W: whole year, A: first term, 
+# C: third term, Z: unspecified term, etc.), it is considered equivalent to all 
+# other variants where the term suffix is specified.
 CourseEquivsList = List[List[Union[str, List[str]]]]
 
 COURSE_EQUIVALENCIES: CourseEquivsList = [
@@ -179,3 +173,216 @@ COURSE_EQUIVALENCIES: CourseEquivsList = [
     ['CML4607F', 'CML4607Z'],
     ['CML4607F', 'MEC4022Z']
 ]
+
+
+
+
+
+# Prerequisites
+# For each entry taking the first course requires that all the courses that
+# follow have been done.  If any element contains a set then at least one
+# in the set must have been done.
+#
+# Second-year students may not register for EEE3073S
+# EEE4022:  All 1st, 2nd, 3rd year core courses and 32 credits max
+# MEC2025F:  or DP for MAM1003W and PHY1010W
+# MEC2026S:  third year
+# MEC3031S:  and MEC2020W or equivalent
+# MEC3035S:  MAM2082F?
+# MEC4063C:  third year
+COURSE_PREREQUISITES: List[List[Union[str, List[str]]]] = [
+    ['MAM1021', 'MAM1020'],
+    ['PHY1013', ['PHY1012', 'PHY1014']],
+    ['EEE2035F', 'MAM1021'],
+    ['EEE2038W', 'MAM1021', 'PHY1013'],
+    ['EEE2039W', ['CSC1015', 'CSC1017', 'MAM1021', 'PHY1013']],
+    ['MAM2083', ['MAM1003W', 'MAM1020'], 'MAM1021'],
+    ['MAM2084', 'MAM1021'],
+    ['MEC2043F', 'PHY1012', 'PHY1013'],
+    ['EEE3017W', 'EEE2039W'],
+    ['EEE3031S', 'EEE2038W'],
+    ['EEE3061W', 'EEE2038W', 'EEE2039W', 'EEE2031S'],
+    ['EEE3068F', 'EEE2038W', 'EEE2039W'],
+    ['EEE3069W', 'MAM2084', 'EEE2035F', 'EEE2038W', 'EEE2039W'],
+    ['MEC2023', 'MAM1021', 'MAM1042S', 'PHY1012', 'PHY1013'],
+    ['MEC2025F', 'MAM1042S', 'MAM1020', 'PHY1012S'],
+    ['MEC3031S', 'MEC2023', 'MEC2025F'],
+    ['EEE4006F', 'EEE3073S'],
+    ['EEE4036C', 'EEE3083F', ['EEE3069W', 'EEE3086F', 'EEE3057S']],
+    ['EEE4051F', 'EEE2038W', 'EEE2039W', 'EEE3073S', 'MAM2084'],
+    ['EEE4093F', 'EEE3069W'],
+    ['EEE4099F', ['EEE3031S', 'EEE3057S']]
+]
+
+# Corequisites
+COURSE_COREQUISITES: List[List[Union[str, List[str]]]] = [
+    ['PHY1012F', ['MAM1020F', 'MAM1020S']],
+    ['PHY1012S', ['MAM1020F', 'MAM1020S']],
+    ['PHY1013F', ['MAM1020F', 'MAM1020S']],
+    ['PHY1013S', ['MAM1020F', 'MAM1020S']],
+    ['EEE2035F', ['MAM2083F', 'MAM2083S']],
+    ['EEE4006F', 'EEE4051F']
+]
+
+# Timetable Semester 1 (slots x days grid)
+TIMETABLE_SEMESTER_1: List[List[List[str]]] = [
+    # Slot 1
+    [
+        ['MAM1020F', 'MAM1021F', 'MEC2043F', 'EEE4036A'],
+        ['MAM1020F', 'MAM1021F', 'MAM2083F', 'MAM2084F'],
+        ['MAM1020F', 'MAM1021F', 'MAM2083F', 'MAM2084F', 'EEE4036A'],
+        ['MAM1020F', 'MAM1021F', 'MAM2083F', 'MAM2084F', 'EEE4036A'],
+        ['MAM1020F', 'MAM1021F', 'MAM2083F', 'MAM2084F', 'EEE4036A']
+    ],
+    # Slot 2
+    [
+        ['PHY1012F', 'PHY1013F', 'EEE3017W'],
+        ['PHY1012F', 'PHY1013F', 'MEC2043F', 'MEC2025F'],
+        ['PHY1012F', 'PHY1013F', 'MEC2025F'],
+        ['PHY1012F', 'PHY1013F'],
+        ['PHY1012F', 'PHY1013F', 'MEC2043F', 'MEC2025F']
+    ],
+    # Slot 3
+    [
+        ['EEE1005W', 'EEE2038W', 'EEE3069W', 'EEE4099F'],
+        ['EEE2039W', 'EEE3017W'],
+        ['EEE1005W', 'EEE2038W', 'EEE3069W', 'EEE4001F'],
+        ['EEE1005W', 'EEE2039W'],
+        ['EEE2038W', 'EEE3069W']
+    ],
+    # Slot 4
+    [
+        ['CSC1017F', 'EEE2035F', 'EEE3086F', 'EEE4099F'],
+        ['CSC1017F', 'MEC2023F', 'EEE4006F'],
+        ['MEC2023F', 'EEE4001F'],
+        ['CSC1017F', 'MEC2023F', 'EEE4001F'],
+        ['MEC2023F', 'EEE4001F']
+    ],
+    # Slot 5
+    [
+        ['MEC1003F', 'EEE2035F', 'EEE3068F', 'MEC3023F'],
+        ['EEE1005W', 'EEE2038W', 'EEE3068F', 'EEE4006F'],
+        ['EEE1005W', 'EEE2038W', 'EEE3068F', 'MEC3023F'],
+        ['MEC1003F', 'EEE2035F', 'EEE3086F', 'EEE4099F', 'MEC3023F'],
+        ['MEC1003F', 'EEE2035F', 'EEE3086F', 'EEE4099F', 'MEC3023F']
+    ],
+    # Slot 6
+    [
+        ['EEE2039W', 'EEE3086F', 'HUB4045F'],
+        ['EEE1005W', 'EEE2038W', 'EEE3061W', 'HUB4045F'],
+        ['EEE1005W', 'HUB4045F'],
+        ['EEE3017W'],
+        ['EEE3086F']
+    ],
+    # Slot 7
+    [
+        ['EEE1005W', 'EEE2039W', 'EEE3068F', 'EEE4093F'],
+        ['CSC1017F', 'MEC2023F', 'EEE4051F'],
+        ['MAM1020F', 'MAM1021F', 'MAM2083F', 'MAM2084F', 'MEC2025F', 'EEE4093F'],
+        ['PHY1012F', 'EEE2039W', 'EEE3017W'],
+        ['MEC1003F', 'EEE2039W', 'EEE3069W', 'EEE4093F']
+    ],
+    # Slot 8
+    [
+        ['EEE1005W', 'EEE2039W', 'EEE3068F', 'EEE4099F'],
+        ['CSC1017F', 'MEC2023F', 'EEE4099F'],
+        ['MAM1020F', 'MAM1021F', 'MAM2083F', 'MAM2084F', 'MEC2025F', 'EEE4051F'],
+        ['PHY1012F', 'EEE2039W', 'EEE3061W'],
+        ['MEC1003F', 'EEE2039W', 'EEE3069W', 'EEE4093F']
+    ],
+    # Slot 9
+    [
+        ['EEE1005W', 'EEE2039W', 'EEE3068F'],
+        ['CSC1017F', 'MEC2023F', 'EEE4096F'],
+        ['MEC2025F', 'EEE4096F'],
+        ['PHY1012F', 'EEE2039W', 'EEE3061W'],
+        ['MEC1003F', 'EEE2039W', 'EEE3069W']
+    ]
+]
+
+# Timetable Semester 2 (slots x days grid)
+TIMETABLE_SEMESTER_2: List[List[List[str]]] = [
+    # Slot 1
+    [
+        ['MAM1021S', 'MAM1020S', 'MEC4022Z'],
+        ['MAM1021S', 'MAM1020S', 'MAM2084S', 'MAM2083S', 'MEC4022Z'],
+        ['MAM1021S', 'MAM1020S', 'MAM2084S', 'MAM2083S', 'MEC4022Z'],
+        ['MAM1021S', 'MAM1020S', 'MAM2084S', 'MAM2083S', 'MEC4022Z'],
+        ['MAM1021S', 'MAM1020S', 'MAM2084S', 'MAM2083S']
+    ],
+    # Slot 2
+    [
+        ['PHY1013S', 'PHY1012S', 'MEC2022S', 'MEC3031S', 'EEE4104C'],
+        ['PHY1013S', 'PHY1012S', 'MEC2022S', 'MEC3031S', 'EEE4104C'],
+        ['PHY1013S', 'PHY1012S', 'MEC2022S', 'MEC3031S'],
+        ['PHY1013S', 'PHY1012S', 'MEC2022S', 'MEC3031S', 'EEE4104C'],
+        ['PHY1013S', 'PHY1012S', 'MEC2022S', 'MEC3031S', 'EEE4104C']
+    ],
+    # Slot 3
+    [
+        ['EEE1005W', 'EEE2038W', 'EEE3061W', 'MEC4063C'],
+        ['EEE2039W'],
+        ['EEE1005W', 'EEE2039W', 'MEC4063C'],
+        ['EEE1005W', 'EEE2039W', 'EEE3031S'],
+        ['EEE2039W', 'MEC4063C']
+    ],
+    # Slot 4
+    [
+        ['MAM1042S', 'EEE2036S', 'MEC3035S'],
+        ['MAM1042S', 'EEE2036S', 'EEE3017W', 'EEE4036C'],
+        ['MAM1042S', 'EEE2036S', 'MEC3035S', 'EEE4036C'],
+        ['EEE2036S', 'EEE4036C'],
+        ['MAM1042S', 'EEE2036S', 'EEE3073S', 'EEE4036C']
+    ],
+    # Slot 5
+    [
+        ['AXL1200S', 'EEE3017W', 'EEE4105C'],
+        ['EEE1005W', 'EEE2038W', 'EEE3069W', 'EEE4105C'],
+        ['EEE1005W', 'EEE4105C'],
+        ['EEE2038W', 'EEE3069W', 'EEE4105C'],
+        ['AXL1200S', 'EEE3073S', 'EEE4105C']
+    ],
+    # Slot 6
+    [
+        [],
+        ['EEE1005W', 'EEE2038W', 'EEE3031S'],
+        ['EEE1005W', 'EEE2038W'],
+        ['EEE3017W'],
+        []
+    ],
+    # Slot 7
+    [
+        ['EEE1005W', 'EEE2039W'],
+        ['MAM1042S', 'EEE2039W'],  # EEE2038W-C?
+        ['MAM1021S', 'MAM1020S', 'MAM2084S', 'MAM2083S'],
+        ['PHY1013S', 'MEC2022S', 'EEE3017W'],
+        ['EEE2036S', 'EEE3069W']
+    ],
+    # Slot 8
+    [
+        ['EEE1005W', 'EEE2039W', 'MEC2026S'],
+        ['MAM1042S', 'EEE2039W'],
+        ['MAM1021S', 'MAM1020S', 'MAM2084S', 'MAM2083S', 'MEC2026S'],
+        ['PHY1013S', 'MEC2022S', 'EEE3061W'],
+        ['EEE2036S', 'EEE3069W']
+    ],
+    # Slot 9
+    [
+        ['EEE1005W', 'EEE2039W', 'MEC2026S'],
+        ['MAM1042S', 'EEE2039W'],
+        ['MEC2026S'],
+        ['PHY1013S', 'EEE3061W'],
+        ['EEE2036S', 'EEE3069W']
+    ],
+    # Slot 10
+    [
+        ['EEE2039W'],
+        ['EEE2039W'],
+        [],
+        [],
+        []
+    ]
+]
+
+# Full weekly timetable (vertically concatenated slot rows)
+TIMETABLE: List[List[List[str]]] = TIMETABLE_SEMESTER_1 + TIMETABLE_SEMESTER_2
