@@ -4,10 +4,10 @@ from typing import List, Dict, Union, Any
 
 ME_CODE = 'EB011'
 ME_CORE = [
-    'CSC1015F', 'EEE1008F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 'AXL1200S', 
+    'CSC1015F', 'EEE1008F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 
     'CSC1016S', 'EEE1009S', 'MAM1021S', 'PHY1013S', 'EEE1000X', 
     'EEE2045F', 'EEE2046F', 'EEE2048S', 'MAM2083F', 'MEC1009F', 
-    'EEE2044S', 'EEE2047S', 'MAM2084S', 'MEC2026S', 'PHY2010S', 
+    'EEE2044S', 'EEE2047S', 'MAM2084S', 'PHY2010S', 
     'EEE3088F', 'EEE3090F', 'EEE3091F', 'EEE3092F', 'MEC2047F', 
     'EEE3094S', 'EEE3096S', 'EEE3099S', 'MEC2045S', 'COMPSTUD', 'EEE3000X', 
     'EEE4113F', 'CML4607F', 'EEE4125C', 'EEE4124C', 'EEE4022S'
@@ -24,10 +24,10 @@ ME_CECORE = [
 
 EE_CODE = 'EB009'
 EE_CORE = [
-    'CSC1015F', 'EEE1008F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 'AXL1200S', 
+    'CSC1015F', 'EEE1008F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 
     'CSC1016S', 'EEE1009S', 'MAM1021S', 'PHY1013S', 'EEE1000X', 
     'EEE2045F', 'EEE2046F', 'EEE2048S', 'MAM2083F', 'MEC1009F', 
-    'EEE2044S', 'EEE2047S', 'MAM2084S', 'MEC2026S', 'PHY2010S', 
+    'EEE2044S', 'EEE2047S', 'MAM2084S', 'PHY2010S', 
     'EEE3088F', 'EEE3089F', 'EEE3090F', 'EEE3091F', 'EEE3092F', 
     'EEE3093S', 'EEE3094S', 'EEE3098S', 'EEE3100S', 'COMPSTUD', 'EEE3000X', 
     'EEE4113F', 'CML4607F', 'EEE4125C', 'EEE4124C', 'EEE4022S'
@@ -42,10 +42,10 @@ EE_CECORE = [
 
 EC_CODE = 'EB022'
 EC_CORE = [
-    'CSC1015F', 'EEE1008F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 'AXL1200S', 
+    'CSC1015F', 'EEE1008F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 
     'CSC1016S', 'EEE1009S', 'MAM1021S', 'PHY1013S', 'EEE1000X', 
     'EEE2045F', 'EEE2046F', 'EEE2048S', 'MAM2083F', 'MEC1009F', 
-    'EEE2044S', 'EEE2047S', 'MAM2084S', 'MEC2026S', 'PHY2010S', 
+    'EEE2044S', 'EEE2047S', 'MAM2084S', 'PHY2010S', 
     'CSC2001F', 'EEE3088F', 'EEE3089F', 'EEE3090F', 'EEE3092F', 
     'EEE3096S', 'EEE3097S', 'COMPSTUD', 'EEE3000X', 
     'EEE4113F', 'CML4607F', 'EEE4125C', 'EEE4124C', 'EEE4022S'
@@ -211,7 +211,41 @@ COURSE_PREREQUISITES: List[List[Union[str, List[str]]]] = [
     ['EEE4036C', 'EEE3083F', ['EEE3069W', 'EEE3086F', 'EEE3057S']],
     ['EEE4051F', 'EEE2038W', 'EEE2039W', 'EEE3073S', 'MAM2084'],
     ['EEE4093F', 'EEE3069W'],
-    ['EEE4099F', ['EEE3031S', 'EEE3057S']]
+    ['EEE4099F', ['EEE3031S', 'EEE3057S']],
+    # 2026 Core & Service Course Prerequisites (from EEE_cdesc.pdf)
+    ['EEE2041F', ['PHY1013', 'PHY1004', 'PHY1032'], ['MAM1021', 'MAM1004', 'MAM1008', 'MAM1000W']],
+    ['EEE2042S', ['MAM1021', 'MAM1004', 'MAM1008', 'MAM1000W'], ['PHY1013', 'PHY1004', 'PHY1032'], 'EEE2041F'],
+    ['EEE2044S', ['MAM1020', 'MAM1023'], ['PHY1013', 'PHY1015'], 'EEE1007S'],
+    ['EEE2045F', 'EEE1006F'],
+    ['EEE2046F', 'EEE1006F', 'CSC1015F'],
+    ['EEE2046S', 'EEE1006F', 'CSC1015F'],
+    ['EEE2047S', ['MAM1021', 'MAM1024']],
+    ['EEE2050F', 'CSC1015F', 'EEE2042S'],
+    ['EEE3088F', ['EEE2045F', 'EEE2046F', 'EEE2046S']],
+    ['EEE3089F', 'PHY2010S', 'MAM2083'],
+    ['EEE3090F', 'EEE2045F', 'EEE2047S'],
+    ['EEE3091F', 'EEE2044S'],
+    ['EEE3092F', 'EEE2047S', 'MAM2083'],
+    ['EEE3093S', ['EEE2046F', 'EEE2046S']],
+    ['EEE3094S', 'EEE2045F', 'EEE2047S', 'MAM2084'],
+    ['EEE3095S', 'EEE2050F'],
+    ['EEE3096S', ['EEE2046F', 'EEE2046S']],
+    ['EEE3097S', 'EEE3088F'],
+    ['EEE3098S', 'EEE3088F'],
+    ['EEE3099S', 'EEE3088F'],
+    ['EEE3100S', 'EEE2044S'],
+    ['EEE4022S', ['EEE4114F', 'EEE4126F', 'EEE4117F', 'EEE4118F', 'EEE4121F', 'EEE4120F', 'EEE4119F']],
+    ['EEE4022F', ['EEE4114F', 'EEE4126F', 'EEE4117F', 'EEE4118F', 'EEE4121F', 'EEE4120F', 'EEE4119F']],
+    ['EEE4113F', ['EEE3097S', 'EEE3098S', 'EEE3099S']],
+    ['EEE4114F', ['EEE3092F', 'EEE3094S']],
+    ['EEE4117F', 'EEE3091F'],
+    ['EEE4118F', 'EEE3094S'],
+    ['EEE4119F', 'MEC2047F', 'MEC2045S', 'EEE3094S'],
+    ['EEE4120F', 'EEE3096S'],
+    ['EEE4121F', 'EEE3093S'],
+    ['EEE4124C', 'EEE3088F'],
+    ['EEE4125C', ['EEE3097S', 'EEE3098S', 'EEE3099S']],
+    ['EEE4126F', 'EEE3100S']
 ]
 
 # Corequisites
@@ -226,161 +260,169 @@ COURSE_COREQUISITES: List[List[Union[str, List[str]]]] = [
 
 # Timetable Semester 1 (slots x days grid)
 TIMETABLE_SEMESTER_1: List[List[List[str]]] = [
-    # Slot 1
+    # Slot 1 (Period 1)
     [
-        ['MAM1020F', 'MAM1021F', 'MEC2043F', 'EEE4036A'],
-        ['MAM1020F', 'MAM1021F', 'MAM2083F', 'MAM2084F'],
-        ['MAM1020F', 'MAM1021F', 'MAM2083F', 'MAM2084F', 'EEE4036A'],
-        ['MAM1020F', 'MAM1021F', 'MAM2083F', 'MAM2084F', 'EEE4036A'],
-        ['MAM1020F', 'MAM1021F', 'MAM2083F', 'MAM2084F', 'EEE4036A']
+        ['EEE4117F', 'MAM1020F', 'MAM1023F', 'MAM2083F', 'MAM2085F'],  # Monday
+        ['EEE4119F_P', 'EEE4126F', 'MAM1020F', 'MAM1023F', 'MAM2083F', 'MAM2085F'],  # Tuesday
+        ['EEE4117F', 'MAM1020F', 'MAM1023F', 'MAM2083F', 'MAM2085F'],  # Wednesday
+        ['EEE4126F', 'MAM1020F', 'MAM1023F', 'MAM2083F', 'MAM2085F'],  # Thursday
+        ['EEE4117F_P', 'MAM1020F', 'MAM1023F', 'MAM2083F', 'MAM2085F']  # Friday
     ],
-    # Slot 2
+    # Slot 2 (Period 2)
     [
-        ['PHY1012F', 'PHY1013F', 'EEE3017W'],
-        ['PHY1012F', 'PHY1013F', 'MEC2043F', 'MEC2025F'],
-        ['PHY1012F', 'PHY1013F', 'MEC2025F'],
-        ['PHY1012F', 'PHY1013F'],
-        ['PHY1012F', 'PHY1013F', 'MEC2043F', 'MEC2025F']
+        ['CSC2001F', 'CSC3002F', 'PHY1012F'],  # Monday
+        ['CSC2001F', 'CSC3002F', 'PHY1012F'],  # Tuesday
+        ['CSC2001F', 'CSC3002F', 'PHY1012F'],  # Wednesday
+        ['CSC2001F', 'CSC3002F', 'PHY1012F'],  # Thursday
+        ['CSC2001F', 'CSC3002F', 'EEE4126F_P', 'PHY1012F']  # Friday
     ],
-    # Slot 3
+    # Slot 3 (Period 3)
     [
-        ['EEE1005W', 'EEE2038W', 'EEE3069W', 'EEE4099F'],
-        ['EEE2039W', 'EEE3017W'],
-        ['EEE1005W', 'EEE2038W', 'EEE3069W', 'EEE4001F'],
-        ['EEE1005W', 'EEE2039W'],
-        ['EEE2038W', 'EEE3069W']
+        ['EEE1008F', 'EEE2045F', 'EEE3090F', 'EEE4119F', 'EEE4121F'],  # Monday
+        ['EEE2045F_P', 'EEE3088F', 'EEE4118F', 'PHY1014F'],  # Tuesday
+        ['EEE2045F_P', 'EEE3091F', 'EEE4119F', 'EEE4121F', 'PHY1014F'],  # Wednesday
+        ['EEE1008F', 'EEE2045F', 'EEE3090F', 'EEE4118F'],  # Thursday
+        ['EEE3090F_P', 'EEE3091F', 'EEE4120F', 'PHY1014F']  # Friday
     ],
-    # Slot 4
+    # Slot 4 (Period 4)
     [
-        ['CSC1017F', 'EEE2035F', 'EEE3086F', 'EEE4099F'],
-        ['CSC1017F', 'MEC2023F', 'EEE4006F'],
-        ['MEC2023F', 'EEE4001F'],
-        ['CSC1017F', 'MEC2023F', 'EEE4001F'],
-        ['MEC2023F', 'EEE4001F']
+        [],  # Monday
+        ['CSC1015F_P', 'PHY1014F_P'],  # Tuesday
+        ['PHY1014F_P'],  # Wednesday
+        [],  # Thursday
+        ['PHY1014F_P']  # Friday
     ],
-    # Slot 5
+    # Slot 5 (Period 5)
     [
-        ['MEC1003F', 'EEE2035F', 'EEE3068F', 'MEC3023F'],
-        ['EEE1005W', 'EEE2038W', 'EEE3068F', 'EEE4006F'],
-        ['EEE1005W', 'EEE2038W', 'EEE3068F', 'MEC3023F'],
-        ['MEC1003F', 'EEE2035F', 'EEE3086F', 'EEE4099F', 'MEC3023F'],
-        ['MEC1003F', 'EEE2035F', 'EEE3086F', 'EEE4099F', 'MEC3023F']
+        ['EEE4118F_P', 'MEC1009F', 'MEC2047F'],  # Monday
+        ['CML4607F', 'CSC1015F_P', 'MEC1009F', 'MEC2047F'],  # Tuesday
+        ['CML4607F', 'MEC1009F', 'MEC2047F'],  # Wednesday
+        ['CML4607F', 'MEC1009F', 'MEC2047F', 'PHY1014F'],  # Thursday
+        ['CML4607F']  # Friday
     ],
-    # Slot 6
+    # Slot 6 (Period M)
     [
-        ['EEE2039W', 'EEE3086F', 'HUB4045F'],
-        ['EEE1005W', 'EEE2038W', 'EEE3061W', 'HUB4045F'],
-        ['EEE1005W', 'HUB4045F'],
-        ['EEE3017W'],
-        ['EEE3086F']
+        ['HUB4049F'],  # Monday
+        ['HUB4049F'],  # Tuesday
+        ['HUB4049F'],  # Wednesday
+        [],  # Thursday
+        []  # Friday
     ],
-    # Slot 7
+    # Slot 7 (Period 6)
     [
-        ['EEE1005W', 'EEE2039W', 'EEE3068F', 'EEE4093F'],
-        ['CSC1017F', 'MEC2023F', 'EEE4051F'],
-        ['MAM1020F', 'MAM1021F', 'MAM2083F', 'MAM2084F', 'MEC2025F', 'EEE4093F'],
-        ['PHY1012F', 'EEE2039W', 'EEE3017W'],
-        ['MEC1003F', 'EEE2039W', 'EEE3069W', 'EEE4093F']
+        ['EEE1008F_P', 'EEE3089F', 'EEE4120F', 'MEC1003F_P', 'MEC1009F_P', 'MEC2047F_P', 'PHY1014F'],  # Monday
+        ['EEE2046F', 'EEE3092F', 'EEE4114F', 'MAM1020F_P', 'MAM1023F_P', 'MAM2085F_P'],  # Tuesday
+        ['CSC1015F', 'EEE3089F', 'EEE4113F', 'MAM2083F_P', 'PHY1014F_P'],  # Wednesday
+        ['EEE2046F', 'EEE3092F', 'EEE4114F', 'PHY1012F_P', 'PHY1014F_P'],  # Thursday
+        ['CSC2001F_P', 'EEE1008F_P', 'EEE3090F_P', 'EEE4113F_P', 'MEC1003F']  # Friday
     ],
-    # Slot 8
+    # Slot 8 (Period 7)
     [
-        ['EEE1005W', 'EEE2039W', 'EEE3068F', 'EEE4099F'],
-        ['CSC1017F', 'MEC2023F', 'EEE4099F'],
-        ['MAM1020F', 'MAM1021F', 'MAM2083F', 'MAM2084F', 'MEC2025F', 'EEE4051F'],
-        ['PHY1012F', 'EEE2039W', 'EEE3061W'],
-        ['MEC1003F', 'EEE2039W', 'EEE3069W', 'EEE4093F']
+        [],  # Monday
+        [],  # Tuesday
+        [],  # Wednesday
+        [],  # Thursday
+        []  # Friday
     ],
-    # Slot 9
+    # Slot 9 (Period 8)
     [
-        ['EEE1005W', 'EEE2039W', 'EEE3068F'],
-        ['CSC1017F', 'MEC2023F', 'EEE4096F'],
-        ['MEC2025F', 'EEE4096F'],
-        ['PHY1012F', 'EEE2039W', 'EEE3061W'],
-        ['MEC1003F', 'EEE2039W', 'EEE3069W']
+        ['EEE3089F_P'],  # Monday
+        ['EEE2046F_P', 'EEE3092F_P', 'EEE4120F_P'],  # Tuesday
+        ['EEE3088F_P'],  # Wednesday
+        ['EEE2046F_P', 'EEE3091F_P', 'EEE4120F_P'],  # Thursday
+        []  # Friday
+    ],
+    # Slot 10 (Period 9)
+    [
+        [],  # Monday
+        [],  # Tuesday
+        [],  # Wednesday
+        ['PHY1012F_P'],  # Thursday
+        []  # Friday
     ]
 ]
 
 # Timetable Semester 2 (slots x days grid)
 TIMETABLE_SEMESTER_2: List[List[List[str]]] = [
-    # Slot 1
+    # Slot 1 (Period 1)
     [
-        ['MAM1021S', 'MAM1020S', 'MEC4022Z'],
-        ['MAM1021S', 'MAM1020S', 'MAM2084S', 'MAM2083S', 'MEC4022Z'],
-        ['MAM1021S', 'MAM1020S', 'MAM2084S', 'MAM2083S', 'MEC4022Z'],
-        ['MAM1021S', 'MAM1020S', 'MAM2084S', 'MAM2083S', 'MEC4022Z'],
-        ['MAM1021S', 'MAM1020S', 'MAM2084S', 'MAM2083S']
+        ['MAM1021S', 'MAM1024S'],  # Monday
+        ['MAM1021S', 'MAM1024S', 'MAM2084S'],  # Tuesday
+        ['MAM1021S', 'MAM1024S', 'MAM2084S'],  # Wednesday
+        ['MAM1021S', 'MAM1024S', 'MAM2084S'],  # Thursday
+        ['MAM1021S', 'MAM1024S', 'MAM2084S']  # Friday
     ],
-    # Slot 2
+    # Slot 2 (Period 2)
     [
-        ['PHY1013S', 'PHY1012S', 'MEC2022S', 'MEC3031S', 'EEE4104C'],
-        ['PHY1013S', 'PHY1012S', 'MEC2022S', 'MEC3031S', 'EEE4104C'],
-        ['PHY1013S', 'PHY1012S', 'MEC2022S', 'MEC3031S'],
-        ['PHY1013S', 'PHY1012S', 'MEC2022S', 'MEC3031S', 'EEE4104C'],
-        ['PHY1013S', 'PHY1012S', 'MEC2022S', 'MEC3031S', 'EEE4104C']
+        ['CSC2002S', 'PHY1013S', 'PHY2010S'],  # Monday
+        ['CSC2002S', 'PHY1013S', 'PHY2010S'],  # Tuesday
+        ['CSC2002S', 'PHY1013S', 'PHY2010S'],  # Wednesday
+        ['CSC2002S', 'PHY1013S', 'PHY2010S'],  # Thursday
+        ['CSC2002S', 'PHY1013S', 'PHY2010S']  # Friday
     ],
-    # Slot 3
+    # Slot 3 (Period 3)
     [
-        ['EEE1005W', 'EEE2038W', 'EEE3061W', 'MEC4063C'],
-        ['EEE2039W'],
-        ['EEE1005W', 'EEE2039W', 'MEC4063C'],
-        ['EEE1005W', 'EEE2039W', 'EEE3031S'],
-        ['EEE2039W', 'MEC4063C']
+        ['EEE1009S', 'EEE2047S', 'EEE3094S'],  # Monday
+        ['EEE2044S', 'EEE3096S', 'EEE3100S', 'PHY1015S'],  # Tuesday
+        ['EEE2044S', 'EEE3096S', 'EEE3100S', 'PHY1015S'],  # Wednesday
+        ['EEE1009S', 'EEE2047S', 'EEE3094S'],  # Thursday
+        ['EEE2048S', 'EEE3097S', 'EEE3098S', 'PHY1015S']  # Friday
     ],
-    # Slot 4
+    # Slot 4 (Period 4)
     [
-        ['MAM1042S', 'EEE2036S', 'MEC3035S'],
-        ['MAM1042S', 'EEE2036S', 'EEE3017W', 'EEE4036C'],
-        ['MAM1042S', 'EEE2036S', 'MEC3035S', 'EEE4036C'],
-        ['EEE2036S', 'EEE4036C'],
-        ['MAM1042S', 'EEE2036S', 'EEE3073S', 'EEE4036C']
+        [],  # Monday
+        ['PHY1015S_P'],  # Tuesday
+        ['PHY1015S_P'],  # Wednesday
+        [],  # Thursday
+        ['PHY1015S_P']  # Friday
     ],
-    # Slot 5
+    # Slot 5 (Period 5)
     [
-        ['AXL1200S', 'EEE3017W', 'EEE4105C'],
-        ['EEE1005W', 'EEE2038W', 'EEE3069W', 'EEE4105C'],
-        ['EEE1005W', 'EEE4105C'],
-        ['EEE2038W', 'EEE3069W', 'EEE4105C'],
-        ['AXL1200S', 'EEE3073S', 'EEE4105C']
+        [],  # Monday
+        ['CSC1016S', 'MEC2045S'],  # Tuesday
+        ['MEC2045S'],  # Wednesday
+        ['MEC2045S', 'PHY1015S'],  # Thursday
+        []  # Friday
     ],
-    # Slot 6
+    # Slot 6 (Period M)
     [
-        [],
-        ['EEE1005W', 'EEE2038W', 'EEE3031S'],
-        ['EEE1005W', 'EEE2038W'],
-        ['EEE3017W'],
-        []
+        [],  # Monday
+        [],  # Tuesday
+        [],  # Wednesday
+        [],  # Thursday
+        []  # Friday
     ],
-    # Slot 7
+    # Slot 7 (Period 6)
     [
-        ['EEE1005W', 'EEE2039W'],
-        ['MAM1042S', 'EEE2039W'],  # EEE2038W-C?
-        ['MAM1021S', 'MAM1020S', 'MAM2084S', 'MAM2083S'],
-        ['PHY1013S', 'MEC2022S', 'EEE3017W'],
-        ['EEE2036S', 'EEE3069W']
+        ['CSC2002S_P', 'EEE1009S_P', 'EEE2044S_P', 'MEC2045S_P', 'PHY1015S'],  # Monday
+        ['EEE3093S', 'EEE4125C', 'MAM1021S_P', 'MAM1024S_P', 'MAM2084S_P'],  # Tuesday
+        ['CSC1016S_P', 'EEE3094S_P', 'PHY1015S_P'],  # Wednesday
+        ['EEE3093S', 'EEE3099S', 'EEE4125C', 'PHY1013S_P', 'PHY1015S_P'],  # Thursday
+        ['EEE1009S_P', 'EEE3096S_P', 'PHY2010S_P']  # Friday
     ],
-    # Slot 8
+    # Slot 8 (Period 7)
     [
-        ['EEE1005W', 'EEE2039W', 'MEC2026S'],
-        ['MAM1042S', 'EEE2039W'],
-        ['MAM1021S', 'MAM1020S', 'MAM2084S', 'MAM2083S', 'MEC2026S'],
-        ['PHY1013S', 'MEC2022S', 'EEE3061W'],
-        ['EEE2036S', 'EEE3069W']
+        [],  # Monday
+        [],  # Tuesday
+        [],  # Wednesday
+        [],  # Thursday
+        []  # Friday
     ],
-    # Slot 9
+    # Slot 9 (Period 8)
     [
-        ['EEE1005W', 'EEE2039W', 'MEC2026S'],
-        ['MAM1042S', 'EEE2039W'],
-        ['MEC2026S'],
-        ['PHY1013S', 'EEE3061W'],
-        ['EEE2036S', 'EEE3069W']
+        [],  # Monday
+        ['EEE3093S_P'],  # Tuesday
+        [],  # Wednesday
+        ['EEE3100S_P'],  # Thursday
+        []  # Friday
     ],
-    # Slot 10
+    # Slot 10 (Period 9)
     [
-        ['EEE2039W'],
-        ['EEE2039W'],
-        [],
-        [],
-        []
+        [],  # Monday
+        [],  # Tuesday
+        [],  # Wednesday
+        [],  # Thursday
+        []  # Friday
     ]
 ]
 

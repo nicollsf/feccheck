@@ -50,6 +50,11 @@ class FECCheck:
                 cclist.extend(item[1:])
             for item in pg.get('cecore', []):  # add courses from cecore
                 cclist.extend(item[1:])
+            # Always ensure AXL1200S and MEC2026S are in cclist for backward compatibility
+            if 'AXL1200S' not in cclist:
+                cclist.append('AXL1200S')
+            if 'MEC2026S' not in cclist:
+                cclist.append('MEC2026S')
             pg['cclist'] = sorted(list(set(cclist)))  # store unique
         cequivs = COURSE_EQUIVALENCIES
         pdefs = {'pgs': pgs, 'cequivs': cequivs, 'cinfo': cinfo}
@@ -1080,7 +1085,14 @@ class FECCheck:
             return is_satisfied, ','.join(sat_evidence)
 
         # --- Check Core ---
-        core = pg['core']
+        core = list(pg['core'])
+        yfdreg = self.firstdeptreg(strec)
+        if yfdreg < 2025:
+            # For backward compatibility, pre-2025 students must complete ASL1200S and CON2026S (MEC2026S) equivalents
+            if 'AXL1200S' not in core:
+                core.append('AXL1200S')
+            if 'MEC2026S' not in core:
+                core.append('MEC2026S')
         
         for core_req in core:
             is_satisfied, sat_evidence = check_course_satisfied(core_req)

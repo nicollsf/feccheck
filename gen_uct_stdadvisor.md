@@ -31,16 +31,17 @@ Regenerate or update `uct_stadvisor.md` with the extracted data. Ensure the docu
    - *Risk Assessment*: Recognize when students are at risk of exclusion (N+1/N+2 rules, strikes, or credit deficits).
    - *Registration Planning*: Help students decide what courses to register for.
 2. **Degree Programs & Codes**: Detail the standard codes (EB009, EB011, EB022) and how to identify ASPECT students (8 in the 3rd position, e.g. EB8xx).
-3. **Graduation Requirements**: Highlight the credit requirements (560 vs 576) and lists of core and elective courses for each program.
+3. **Graduation Requirements**: Highlight the credit requirements (560 vs 576) and lists of core and elective courses for each program (noting that `AXL1200S` and `MEC2026S` are only core for students registering before 2025).
 4. **Course Equivalencies**: Present the equivalencies in a readable mapping.
-5. **Progression Limitation Rules**:
+5. **Timetable Clash Risk Assessment**: Explain the 10-period daily schedule slots (Periods 1 to 5, M, 6 to 9) and detail clash classification rules (hard clashing standard lectures vs. soft clashing `_P` practical/lab/tutorial sessions).
+6. **Progression Limitation Rules**:
    - Define variables like `eedur`, `nstrikes`, `tfer`, and `N`.
    - Explain the N+1 and N+2 exclusion rules.
    - List the annual credit thresholds for standard and ASPECT students.
-6. **Progression Codes**: Explain codes like `CONT`, `QUAL`, `RENN`, `FECR`, and the conditional simulation codes (`QUAS`, `SUPP`, `FECP`).
-7. **Honours Classification**: Detail the criteria for FCH and HONS.
-8. **Advising Guidelines & Diagnostic Workflow**: A step-by-step diagnostic workflow for the agent to follow when evaluating a student record.
-9. **Interpreting CRS Excerpts**: Detail how to parse and clean student record dumps from CRS, including identifying student header lines, yearly block headers, semester codes (8th character of the course code), and grading symbols (passed, failed, pending/deferred). Include the duplicate course registration cleaning rule from `crs_parser.py`.
+7. **Progression Codes**: Explain codes like `CONT`, `QUAL`, `RENN`, `FECR`, and the conditional simulation codes (`QUAS`, `SUPP`, `FECP`).
+8. **Honours Classification**: Detail the criteria for FCH and HONS.
+9. **Advising Guidelines & Diagnostic Workflow**: A step-by-step diagnostic workflow for the agent to follow when evaluating a student record.
+10. **Interpreting CRS Excerpts**: Detail how to parse and clean student record dumps from CRS, including identifying student header lines, yearly block headers, semester codes (8th character of the course code), and grading symbols (passed, failed, pending/deferred). Include the duplicate course registration cleaning rule from `crs_parser.py`.
 
 ## Step 3: Verify Alignment
 Ensure that no hardcoded rules in the prompt file deviate from the logic in `program_defs.py` and `fec_check.py`. Keep the tone of the prompt professional, instructional, and structured for maximum LLM compliance.

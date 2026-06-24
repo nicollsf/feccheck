@@ -30,24 +30,27 @@ To qualify for graduation (`QUAL`), a student must satisfy three conditions:
 
 ### Program Core & Elective Specifications
 #### A. Mechatronics (ME / EB011)
-* **Core Courses (37 courses)**:
-  `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `AXL1200S`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `MEC2026S`, `PHY2010S`, `EEE3088F`, `EEE3090F`, `EEE3091F`, `EEE3092F`, `MEC2047F`, `EEE3094S`, `EEE3096S`, `EEE3099S`, `MEC2045S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
+* **Core Courses (35 courses for 2026)**:
+  `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `PHY2010S`, `EEE3088F`, `EEE3090F`, `EEE3091F`, `EEE3092F`, `MEC2047F`, `EEE3094S`, `EEE3096S`, `EEE3099S`, `MEC2045S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
+  *(Note: Pre-2025 registration students additionally require legacy core courses `AXL1200S` and `MEC2026S`.)*
 * **Number-Based Electives (necore)**: Select at least **2** courses from:
   `EEE4117F`, `EEE4118F`, `EEE4119F`.
 * **Credit-Based Electives (cecore)**: Select courses totaling at least **48 credits** from:
   `EEE4117F` (20 cr), `EEE4118F` (20 cr), `EEE4119F` (20 cr), `EEE4114F` (16 cr), `EEE4120F` (20 cr), `HUB4045F` (8 cr), `HUB4049F` (8 cr).
 
 #### B. Electrical (EE / EB009)
-* **Core Courses (37 courses)**:
-  `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `AXL1200S`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `MEC2026S`, `PHY2010S`, `EEE3088F`, `EEE3089F`, `EEE3090F`, `EEE3091F`, `EEE3092F`, `EEE3093S`, `EEE3094S`, `EEE3098S`, `EEE3100S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
+* **Core Courses (35 courses for 2026)**:
+  `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `PHY2010S`, `EEE3088F`, `EEE3089F`, `EEE3090F`, `EEE3091F`, `EEE3092F`, `EEE3093S`, `EEE3094S`, `EEE3098S`, `EEE3100S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
+  *(Note: Pre-2025 registration students additionally require legacy core courses `AXL1200S` and `MEC2026S`.)*
 * **Number-Based Electives (necore)**: Select at least **1** course from:
   `EEE4126F`, `EEE4118F`, `EEE4121F`.
 * **Credit-Based Electives (cecore)**: Select courses totaling at least **48 credits** from:
   `EEE4126F` (16 cr), `EEE4118F` (20 cr), `EEE4121F` (20 cr), `EEE4114F` (16 cr), `EEE4117F` (20 cr), `HUB4049F` (8 cr).
 
 #### C. Electrical and Computer Engineering (EC / EB022)
-* **Core Courses (35 courses)**:
-  `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `AXL1200S`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `MEC2026S`, `PHY2010S`, `CSC2001F`, `EEE3088F`, `EEE3089F`, `EEE3090F`, `EEE3092F`, `EEE3096S`, `EEE3097S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
+* **Core Courses (33 courses for 2026)**:
+  `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `PHY2010S`, `CSC2001F`, `EEE3088F`, `EEE3089F`, `EEE3090F`, `EEE3092F`, `EEE3096S`, `EEE3097S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
+  *(Note: Pre-2025 registration students additionally require legacy core courses `AXL1200S` and `MEC2026S`.)*
 * **Number-Based Electives (necore)**: Must satisfy BOTH of these conditions:
   1. Select at least **2** courses from: `CSC2002S`, `EEE3093S`, `EEE3094S`.
   2. Select at least **2** courses from: `EEE4114F`, `EEE4118F`, `EEE4120F`, `EEE4121F`.
@@ -125,7 +128,31 @@ A requirement (left side) is satisfied if the student has passed that course OR 
 
 ---
 
-## 4. PROGRESSION LIMITATION RULES
+## 4. TIMETABLE CLASH RISK ASSESSMENT
+A critical aspect of registration advising is identifying scheduling clashes. We use the structured timetable grid variables to predict hard and soft clashes for proposed student registrations.
+
+### Timetable Structure
+* The academic day is split into **10 Periods**:
+  * Period 1 (08:00), Period 2 (09:00), Period 3 (10:00), Period 4 (11:00), Period 5 (12:00)
+  * Period M (13:00 - Lunch/Meridian slot)
+  * Period 6 (14:00), Period 7 (15:00), Period 8 (16:00), Period 9 (17:00)
+* The timetable grid registers courses in each `[Period][Day]` slot (Monday to Friday) for both Semester 1 and Semester 2.
+
+### Clash Classification (Hard vs. Soft Clashes)
+When querying student registration options, check for overlapping courses in the same slot on the same day:
+1. **Hard Clashes (Lecture vs. Lecture)**:
+   * Occurs when two standard course codes (e.g. `'MAM1020F'` and `'PHY1012F'`) occupy the same slot.
+   * Standard lectures are mandatory and non-negotiable. Hard clashes are **prohibited** for standard registrations.
+2. **Soft Clashes (Lecture/Practical vs. Practical)**:
+   * Identified by course codes containing the **`_P` suffix** (e.g. `'MAM1020F_P'`, representing a practical, tutorial, laboratory, or drawing session).
+   * Practical sessions (e.g. MAM1020F_P in Period 6 on Tuesdays) are often run in multiple sections, bi-weekly, or have flexible options.
+   * An overlap involving a `_P` course indicates a **soft clash / likelihood of clash**; the student may be able to register if the department convener permits section assignment adjustments.
+
+This timetable model enables staff to systematically query and avoid hard clashes when constructing plausible individual student registration paths.
+
+---
+
+## 5. PROGRESSION LIMITATION RULES
 
 ### Core Progression Variables
 * **eedur (EEE Duration)**: Number of unique years the student has been registered under any EEE program code (`EB009`, `EB809`, `EB011`, `EB811`, `EB022`, `EB822`).
@@ -179,7 +206,7 @@ The progression code (`CONT`, `FECR`, `RENN`) for non-graduating students is det
 
 ---
 
-## 5. PROGRESSION CODES & WHAT-IF STATUSES
+## 6. PROGRESSION CODES & WHAT-IF STATUSES
 When assessing a student, the advisor evaluates their current/worst-case status (actual current marks) and best-case status (assuming they pass all registered courses or supplementary exams):
 
 * **CONT (Continue)**: Student is in good academic standing.
@@ -195,7 +222,7 @@ When assessing a student, the advisor evaluates their current/worst-case status 
 
 ---
 
-## 6. HONOURS CLASSIFICATION
+## 7. HONOURS CLASSIFICATION
 To qualify for honours, the student must have qualified (`QUAL`), and their registration duration in the EEE department (`eedur`) must not exceed the maximum allowable time (`mtime`):
 * `mtime = 5` for ASPECT students or students who were ever registered on an ASPECT curriculum.
 * `mtime = 4` for Standard students.
@@ -213,7 +240,7 @@ Honours categories:
 
 ---
 
-## 7. ADVISING GUIDELINES & DIAGNOSTIC WORKFLOW
+## 8. ADVISING GUIDELINES & DIAGNOSTIC WORKFLOW
 When presented with a student's academic record, follow this diagnostic sequence:
 
 1. **Classify the Student**:
@@ -242,7 +269,7 @@ When presented with a student's academic record, follow this diagnostic sequence
 
 ---
 
-## 8. INTERPRETING CRS (COURSE RECORD SYSTEM) EXCERPTS
+## 9. INTERPRETING CRS (COURSE RECORD SYSTEM) EXCERPTS
 When staff provide student records copied directly from CRS or a CRS-exported file, interpret the fields and structures using these guidelines:
 
 ### A. Record Identifiers
