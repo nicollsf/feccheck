@@ -299,3 +299,97 @@ Course rows appear within each yearly block and start with (or contain) an 8-cha
 
 ### C. Data Cleaning Rule
 If a course is listed multiple times in the exact same academic year (which occurs in CRS dumps when a student changes programs or is dual-registered), **ignore duplicates** and count only the first entry to avoid credit inflation.
+
+
+---
+
+## APPENDIX A: COURSE PREREQUISITES MAPPING
+To register for the course on the left, the student must have passed all courses on the right. If courses are grouped in brackets `[A or B]`, at least one course in the bracket must be passed:
+
+* **MAM1021** requires: MAM1020
+* **PHY1013** requires: [PHY1012 OR PHY1014]
+* **EEE2035F** requires: MAM1021
+* **EEE2038W** requires: MAM1021 AND PHY1013
+* **EEE2039W** requires: [CSC1015 OR CSC1017 OR MAM1021 OR PHY1013]
+* **MAM2083** requires: [MAM1003W OR MAM1020] AND MAM1021
+* **MAM2084** requires: MAM1021
+* **MEC2043F** requires: PHY1012 AND PHY1013
+* **EEE3017W** requires: EEE2039W
+* **EEE3031S** requires: EEE2038W
+* **EEE3061W** requires: EEE2038W AND EEE2039W AND EEE2031S
+* **EEE3068F** requires: EEE2038W AND EEE2039W
+* **EEE3069W** requires: MAM2084 AND EEE2035F AND EEE2038W AND EEE2039W
+* **MEC2023** requires: MAM1021 AND MAM1042S AND PHY1012 AND PHY1013
+* **MEC2025F** requires: MAM1042S AND MAM1020 AND PHY1012S
+* **MEC3031S** requires: MEC2023 AND MEC2025F
+* **EEE4006F** requires: EEE3073S
+* **EEE4036C** requires: EEE3083F AND [EEE3069W OR EEE3086F OR EEE3057S]
+* **EEE4051F** requires: EEE2038W AND EEE2039W AND EEE3073S AND MAM2084
+* **EEE4093F** requires: EEE3069W
+* **EEE4099F** requires: [EEE3031S OR EEE3057S]
+* **EEE2041F** requires: [PHY1013 OR PHY1004 OR PHY1032] AND [MAM1021 OR MAM1004 OR MAM1008 OR MAM1000W]
+* **EEE2042S** requires: [MAM1021 OR MAM1004 OR MAM1008 OR MAM1000W] AND [PHY1013 OR PHY1004 OR PHY1032] AND EEE2041F
+* **EEE2044S** requires: [MAM1020 OR MAM1023] AND [PHY1013 OR PHY1015] AND EEE1007S
+* **EEE2045F** requires: EEE1006F
+* **EEE2046F** requires: EEE1006F AND CSC1015F
+* **EEE2046S** requires: EEE1006F AND CSC1015F
+* **EEE2047S** requires: [MAM1021 OR MAM1024]
+* **EEE2050F** requires: CSC1015F AND EEE2042S
+* **EEE3088F** requires: [EEE2045F OR EEE2046F OR EEE2046S]
+* **EEE3089F** requires: PHY2010S AND MAM2083
+* **EEE3090F** requires: EEE2045F AND EEE2047S
+* **EEE3091F** requires: EEE2044S
+* **EEE3092F** requires: EEE2047S AND MAM2083
+* **EEE3093S** requires: [EEE2046F OR EEE2046S]
+* **EEE3094S** requires: EEE2045F AND EEE2047S AND MAM2084
+* **EEE3095S** requires: EEE2050F
+* **EEE3096S** requires: [EEE2046F OR EEE2046S]
+* **EEE3097S** requires: EEE3088F
+* **EEE3098S** requires: EEE3088F
+* **EEE3099S** requires: EEE3088F
+* **EEE3100S** requires: EEE2044S
+* **EEE4022S** requires: [EEE4114F OR EEE4126F OR EEE4117F OR EEE4118F OR EEE4121F OR EEE4120F OR EEE4119F]
+* **EEE4022F** requires: [EEE4114F OR EEE4126F OR EEE4117F OR EEE4118F OR EEE4121F OR EEE4120F OR EEE4119F]
+* **EEE4113F** requires: [EEE3097S OR EEE3098S OR EEE3099S]
+* **EEE4114F** requires: [EEE3092F OR EEE3094S]
+* **EEE4117F** requires: EEE3091F
+* **EEE4118F** requires: EEE3094S
+* **EEE4119F** requires: MEC2047F AND MEC2045S AND EEE3094S
+* **EEE4120F** requires: EEE3096S
+* **EEE4121F** requires: EEE3093S
+* **EEE4124C** requires: EEE3088F
+* **EEE4125C** requires: [EEE3097S OR EEE3098S OR EEE3099S]
+* **EEE4126F** requires: EEE3100S
+
+---
+
+## APPENDIX B: WEEKLY SCHEDULING GRIDS (2026)
+Use these grids to verify timetable clash likelihoods. Courses suffixed with `_P` are practical, lab, or tutorial slots (soft clashes).
+
+### Semester 1 Timetable
+| Period | Time | Monday | Tuesday | Wednesday | Thursday | Friday |
+|---|---|---|---|---|---|---|
+| **Period 1** | 08:00 | EEE4117F<br>MAM1020F<br>MAM1023F<br>MAM2083F<br>MAM2085F | EEE4119F_P<br>EEE4126F<br>MAM1020F<br>MAM1023F<br>MAM2083F<br>MAM2085F | EEE4117F<br>MAM1020F<br>MAM1023F<br>MAM2083F<br>MAM2085F | EEE4126F<br>MAM1020F<br>MAM1023F<br>MAM2083F<br>MAM2085F | EEE4117F_P<br>MAM1020F<br>MAM1023F<br>MAM2083F<br>MAM2085F |
+| **Period 2** | 09:00 | CSC2001F<br>CSC3002F<br>PHY1012F | CSC2001F<br>CSC3002F<br>PHY1012F | CSC2001F<br>CSC3002F<br>PHY1012F | CSC2001F<br>CSC3002F<br>PHY1012F | CSC2001F<br>CSC3002F<br>EEE4126F_P<br>PHY1012F |
+| **Period 3** | 10:00 | EEE1008F<br>EEE2045F<br>EEE3090F<br>EEE4119F<br>EEE4121F | EEE2045F_P<br>EEE3088F<br>EEE4118F<br>PHY1014F | EEE2045F_P<br>EEE3091F<br>EEE4119F<br>EEE4121F<br>PHY1014F | EEE1008F<br>EEE2045F<br>EEE3090F<br>EEE4118F | EEE3090F_P<br>EEE3091F<br>EEE4120F<br>PHY1014F |
+| **Period 4** | 11:00 | - | CSC1015F_P<br>PHY1014F_P | PHY1014F_P | - | PHY1014F_P |
+| **Period 5** | 12:00 | EEE4118F_P<br>MEC1009F<br>MEC2047F | CML4607F<br>CSC1015F_P<br>MEC1009F<br>MEC2047F | CML4607F<br>MEC1009F<br>MEC2047F | CML4607F<br>MEC1009F<br>MEC2047F<br>PHY1014F | CML4607F |
+| **Period M** | 13:00 | HUB4049F | HUB4049F | HUB4049F | - | - |
+| **Period 6** | 14:00 | EEE1008F_P<br>EEE3089F<br>EEE4120F<br>MEC1003F_P<br>MEC1009F_P<br>MEC2047F_P<br>PHY1014F | EEE2046F<br>EEE3092F<br>EEE4114F<br>MAM1020F_P<br>MAM1023F_P<br>MAM2085F_P | CSC1015F<br>EEE3089F<br>EEE4113F<br>MAM2083F_P<br>PHY1014F_P | EEE2046F<br>EEE3092F<br>EEE4114F<br>PHY1012F_P<br>PHY1014F_P | CSC2001F_P<br>EEE1008F_P<br>EEE3090F_P<br>EEE4113F_P<br>MEC1003F |
+| **Period 7** | 15:00 | - | - | - | - | - |
+| **Period 8** | 16:00 | EEE3089F_P | EEE2046F_P<br>EEE3092F_P<br>EEE4120F_P | EEE3088F_P | EEE2046F_P<br>EEE3091F_P<br>EEE4120F_P | - |
+| **Period 9** | 17:00 | - | - | - | PHY1012F_P | - |
+
+### Semester 2 Timetable
+| Period | Time | Monday | Tuesday | Wednesday | Thursday | Friday |
+|---|---|---|---|---|---|---|
+| **Period 1** | 08:00 | MAM1021S<br>MAM1024S | MAM1021S<br>MAM1024S<br>MAM2084S | MAM1021S<br>MAM1024S<br>MAM2084S | MAM1021S<br>MAM1024S<br>MAM2084S | MAM1021S<br>MAM1024S<br>MAM2084S |
+| **Period 2** | 09:00 | CSC2002S<br>PHY1013S<br>PHY2010S | CSC2002S<br>PHY1013S<br>PHY2010S | CSC2002S<br>PHY1013S<br>PHY2010S | CSC2002S<br>PHY1013S<br>PHY2010S | CSC2002S<br>PHY1013S<br>PHY2010S |
+| **Period 3** | 10:00 | EEE1009S<br>EEE2047S<br>EEE3094S | EEE2044S<br>EEE3096S<br>EEE3100S<br>PHY1015S | EEE2044S<br>EEE3096S<br>EEE3100S<br>PHY1015S | EEE1009S<br>EEE2047S<br>EEE3094S | EEE2048S<br>EEE3097S<br>EEE3098S<br>PHY1015S |
+| **Period 4** | 11:00 | - | PHY1015S_P | PHY1015S_P | - | PHY1015S_P |
+| **Period 5** | 12:00 | - | CSC1016S<br>MEC2045S | MEC2045S | MEC2045S<br>PHY1015S | - |
+| **Period M** | 13:00 | - | - | - | - | - |
+| **Period 6** | 14:00 | CSC2002S_P<br>EEE1009S_P<br>EEE2044S_P<br>MEC2045S_P<br>PHY1015S | EEE3093S<br>EEE4125C<br>MAM1021S_P<br>MAM1024S_P<br>MAM2084S_P | CSC1016S_P<br>EEE3094S_P<br>PHY1015S_P | EEE3093S<br>EEE3099S<br>EEE4125C<br>PHY1013S_P<br>PHY1015S_P | EEE1009S_P<br>EEE3096S_P<br>PHY2010S_P |
+| **Period 7** | 15:00 | - | - | - | - | - |
+| **Period 8** | 16:00 | - | EEE3093S_P | - | EEE3100S_P | - |
+| **Period 9** | 17:00 | - | - | - | - | - |
