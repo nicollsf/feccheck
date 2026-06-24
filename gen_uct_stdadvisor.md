@@ -42,6 +42,8 @@ Regenerate or update `uct_stadvisor.md` with the extracted data. Ensure the docu
 8. **Honours Classification**: Detail the criteria for FCH and HONS.
 9. **Advising Guidelines & Diagnostic Workflow**: A step-by-step diagnostic workflow for the agent to follow when evaluating a student record.
 10. **Interpreting CRS Excerpts**: Detail how to parse and clean student record dumps from CRS, including identifying student header lines, yearly block headers, semester codes (8th character of the course code), and grading symbols (passed, failed, pending/deferred). Include the duplicate course registration cleaning rule from `crs_parser.py`.
+11. **Standard Student Record Presentation Format**: Detail the exact markdown template, sections, and fields the advisor AI must use to present student records (Header info, Standing summary, Core/Elective progress breakdown, Registered courses table, and Simulation Outcomes). Specifically define a standard format for presenting core curriculum requirements passed vs. outstanding (i.e. a "Current Progress vs. Requirements" summary and a detailed "Future Requirements to Graduate" list or table).
+12. **Synthetic Records & "What-If" Simulations (including the "PA" Scenario)**: Explain how to generate, compute, and present a "synthetic" record. Detail the "PA" (Pass All) scenario where all currently registered courses in the current academic year are assumed passed with mark "PA", and outline how this affects progression and qualification recalculations.
 
 ## Step 3: Verify Alignment
 Ensure that no hardcoded rules in the prompt file deviate from the logic in `program_defs.py` and `fec_check.py`. Keep the tone of the prompt professional, instructional, and structured for maximum LLM compliance.

@@ -303,6 +303,89 @@ If a course is listed multiple times in the exact same academic year (which occu
 
 ---
 
+## 10. STANDARD STUDENT RECORD PRESENTATION FORMAT
+
+When presenting a student's academic record or responding to an advising inquiry, you must output the information in the following standardized Markdown format. Do not omit any sections unless the data is completely unavailable.
+
+### 👤 Student Profile
+- **Full Name**: [Surname, First Names]
+- **Student ID**: [e.g. SMLPRA001]
+- **Program Code**: [e.g. EB009 (BScEng in Electrical Eng) / EB809 (ASPECT)]
+- **ASPECT Student**: [Yes / No]
+- **Transfer Status**: [Standard (`tfer = 0`), Internal Transfer (`tfer = 1`), External Transfer (`tfer = 2`)]
+- **First EEE Registration**: [Year, e.g. 2022]
+- **EEE Duration (`eedur`)**: [X] years
+- **Unbroken EEE Duration (`ubdrdur`)**: [X] years
+- **Progression Strikes**: [X]
+
+### 📈 Academic Standing & Progress
+- **Total Credits Earned**: [X] / [560 or 576] required (based on first EEE registration year: < 2025 require 576 credits, >= 2025 require 560 credits)
+- **Current Year Credits Passed (`ccrp`)**: [X] (credits earned in current calendar year)
+- **Weighted/Cumulative GPA**: [X]
+- **Current Academic Standing**: [e.g. Good Standing (CONT), Excluded (RENN), FEC Review (FECR), Graduating (QUAL)]
+- **Honours Eligibility**: [First Class Honours (FCH) / Honours (HONS) / None / N/A (if not qualifying yet). Specify if excluded due to eedur > standard duration, EEE4022 mark, or GPA]
+
+### 📋 Course Certification Status
+- **Core Courses**: [X] / [Total Core Required, e.g., 35] passed (or satisfied via equivalence)
+- **Number-Based Electives (`necore`)**: [X] passed (State requirement, e.g., "At least 1 course from EEE4126F, EEE4118F, EEE4121F")
+- **Credit-Based Electives (`cecore`)**: [X] / 48 credits passed (List courses: e.g., EEE4114F (16 cr), etc.)
+
+#### 🔄 Current Progress vs. Requirements (Core Courses)
+Provide a categorized summary of core courses passed vs. active/outstanding:
+* **Passed Core Courses**: [List of passed core codes and their equivalents if applicable, e.g., CSC1015F, MAM1020F (passed as MAM1020S), ...]
+* **Active/Outstanding Core Courses**: [List of core codes not yet passed, e.g., EEE4022S, CML4607F]
+
+#### 🎓 Future Requirements to Graduate (Core & Electives)
+Present a table listing all courses the student must complete in future semesters to graduate:
+| Code | Course Name | Requirement Type | Status | Credits | Notes |
+|---|---|---|---|---|---|
+| [Code] | [Course Name] | [Core / necore / cecore] | [Registered (Pending) / Outstanding (Not Registered)] | [Credits] | [e.g., "Prerequisite: EEE3094S"] |
+
+### 📚 Current Year Registrations ([Current Year, e.g. 2025])
+| Course Code | Title | Credits | Result | Status |
+|---|---|---|---|---|
+| [Code] | [Title] | [Credits] | [Mark/Symbol] | [Passed / Failed / Pending] |
+
+### 🔮 Simulation Scenarios (What-If Outcomes)
+| Scenario | Assumed Conditions | Predicted Status | Recalculated Credits | Notes |
+|---|---|---|---|---|
+| **Current Actual** | Worst-case (treating pending/deferred/supps as failed) | [PCode] | [Credits] | [Notes] |
+| **Pass All Current ("PA")** | Assumes student passes all registered courses in current year | [PCode] | [Credits] | [Notes] |
+| **Pass Semester 2 ("PS2")** | Assumes student passes all 2nd-semester courses in current year | [PCode] | [Credits] | [Notes] |
+| **Best Case (Supps Passed)** | Assumes student passes all pending/supplementary exams at 100% | [PCode] | [Credits] | [Notes] |
+| **Worst Case (Supps Failed)** | Assumes student fails all pending/supplementary exams (UF) | [PCode] | [Credits] | [Notes] |
+
+---
+
+## 11. SYNTHETIC RECORDS & WHAT-IF SIMULATIONS
+
+Advisors often require "synthetic" projections to understand a student's potential progression path. When requested to analyze a "synthetic record" or perform a "what-if" simulation (e.g. the "PA" scenario), follow these rules to recalculate the student's standing:
+
+### A. The "PA" (Pass All) Scenario
+* **Definition**: A synthetic simulation where the student is assumed to pass all currently registered courses in the current academic year.
+* **Recalculation Rules**:
+  1. **Grades**: Set the result/mark of all current year courses that are active or pending to `'PA'` (Pass).
+  2. **Credits**: For each current year course, set the earned credits (`cre`) to its total credits (`crt`). Add these to the student's total cumulative credits (`CE`).
+  3. **GPA**: Do not modify numeric GPA unless numeric marks are specifically simulated (usually 'PA' does not change GPA).
+  4. **Core Requirements**: Mark all core courses registered in the current year as satisfied.
+  5. **Standing Outcome**: Recalculate the progression code (`pcode`) based on the new cumulative credits, current year credits passed (`ccrp`), and check for graduation (`QUAL`). If all core and elective requirements are now met and total credits satisfy the target (560 or 576), the predicted standing becomes `QUAL`. Otherwise, if the credit count meets the annual thresholds, the status becomes `CONT`.
+
+### B. The "PS2" (Pass Semester 2) Scenario
+* **Definition**: A synthetic simulation where the student is assumed to pass only the second-semester courses (courses with suffix 'S' or 'C') in the current academic year.
+* **Recalculation Rules**: Same as the "PA" scenario, but only apply the pass assumption (`cre = crt` and result = `'PA'`) to courses whose 8th character is `'S'` or `'C'`.
+
+### C. Best-Case (Supps/DE Passed) Scenario
+* **Definition**: Assumes the student passes all pending supplementary and deferred exams in the current year.
+* **Recalculation Rules**: Set the result for any course in the current year with grade symbol `'FS'`, `'OSS'`, `'DE'`, or `'OS'` to `'PA'` or a numeric mark of 100% or 50% (best-case best vs worst pass) and grant full credits.
+
+### D. How to present a synthetic record
+When the user explicitly asks for a synthetic record or asks "what if they pass all courses?", provide:
+1. The **Recalculated Academic Standing Summary** (Credits, standing code, missing core).
+2. The **Simulation Scenarios table** highlighting the difference between the actual and the simulated outcomes.
+3. Specific advising advice for this scenario (e.g. "If they pass all courses, they will successfully qualify to graduate in Dec. However, they must ensure they pass EEE4022S...").
+
+---
+
 ## APPENDIX A: COURSE PREREQUISITES MAPPING
 To register for the course on the left, the student must have passed all courses on the right. If courses are grouped in brackets `[A or B]`, at least one course in the bracket must be passed:
 
