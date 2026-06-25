@@ -43,3 +43,12 @@ The data flows through the system primarily as a list of dictionaries called `st
 2. **Pandas Mutability**: The simulation methods in `fec_check.py` (e.g., `flagsuppspassed`, `flagpassedwithmark`) work by creating `deep=True` copies of a student's `ystats` and `srec` DataFrames, mutating the marks to simulate a pass/fail, and recalculating the GPAs/credits. Be very careful with pandas `.loc` vs `.iloc` when modifying these frames.
 3. **Course Equivalencies**: Course equivalencies in `program_defs.py` are complex. A requirement might be satisfied by a single alternative string (e.g., `'MAM1000W'`), or a *list* of courses that must ALL be passed (e.g., `['EEE4006C', 'EEE4051C']`). Always account for nested lists when doing equivalency lookups.
 4. **Duplicate Course Dumps**: The raw CRS CSV sometimes prints the exact same year of courses multiple times if a student is dual-registered or changing programs. `crs_parser.py` drops these duplicates to prevent credit-count inflation.
+
+## 6. Student Advising Workflow & Priming
+In addition to the batch FEC simulations run via Python, the system supports interactive student advising via Gemini:
+
+1. **[uct_stadvisor.md](file:///Users/nicolls/proj/eleceng/feccheck/uct_stadvisor.md)**: A comprehensive, detailed system prompt for an LLM that serves as the instruction set for a Custom Gem or primed chat. It instructs the AI on how to interpret CRS dumps, check requirements, compute academic standing, and recommend registrations.
+2. **[advising_workflow_guide.md](file:///Users/nicolls/proj/eleceng/feccheck/advising_workflow_guide.md)**: Guide for EEE advisors explaining how to setup the Custom Gem and conduct daily advising workflow.
+3. **[gen_uct_stdadvisor.md](file:///Users/nicolls/proj/eleceng/feccheck/gen_uct_stdadvisor.md)**: Developer specifications detailing how to regenerate/update `uct_stadvisor.md` from the Python source-of-truth logic when rules change.
+
+**Alignment Requirement**: The LLM prompt in `uct_stadvisor.md` must be kept perfectly in sync with the logic in `program_defs.py` and `fec_check.py` to prevent advising discrepancy.

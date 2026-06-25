@@ -8,6 +8,7 @@ Please execute the following steps:
 Read the current versions of the following source files to extract the source-of-truth rules:
 1. **[program_defs.py](program_defs.py)**:
    - Identify the core courses (`CORE`), electives (`NECORE`, `CECORE`), and academic program codes for ME (`EB011`), EE (`EB009`), and EC (`EB022`).
+   - Extract the course credit values mapping from `COURSE_CREDITS`.
    - Extract the complete list of course equivalencies (`COURSE_EQUIVALENCIES`), noting that some course rules involve combinations of multiple courses (e.g. nested lists/tuples).
 2. **[fec_check.py](fec_check.py)**:
    - Inspect the progression checking logic (`FECCheck` class methods such as `getqualinfo`, `isqual`, `getprogressioninfo`, `genfecdecision`, `gentcert`, `aspectstudent`, and `getnumstrikes`).

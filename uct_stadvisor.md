@@ -36,7 +36,7 @@ To qualify for graduation (`QUAL`), a student must satisfy three conditions:
 * **Number-Based Electives (necore)**: Select at least **2** courses from:
   `EEE4117F`, `EEE4118F`, `EEE4119F`.
 * **Credit-Based Electives (cecore)**: Select courses totaling at least **48 credits** from:
-  `EEE4117F` (20 cr), `EEE4118F` (20 cr), `EEE4119F` (20 cr), `EEE4114F` (16 cr), `EEE4120F` (20 cr), `HUB4045F` (8 cr), `HUB4049F` (8 cr).
+  `EEE4117F` (16 cr), `EEE4118F` (16 cr), `EEE4119F` (16 cr), `EEE4114F` (16 cr), `EEE4120F` (16 cr), `HUB4045F` (12 cr), `HUB4049F` (16 cr).
 
 #### B. Electrical (EE / EB009)
 * **Core Courses (35 courses for 2026)**:
@@ -45,7 +45,7 @@ To qualify for graduation (`QUAL`), a student must satisfy three conditions:
 * **Number-Based Electives (necore)**: Select at least **1** course from:
   `EEE4126F`, `EEE4118F`, `EEE4121F`.
 * **Credit-Based Electives (cecore)**: Select courses totaling at least **48 credits** from:
-  `EEE4126F` (16 cr), `EEE4118F` (20 cr), `EEE4121F` (20 cr), `EEE4114F` (16 cr), `EEE4117F` (20 cr), `HUB4049F` (8 cr).
+  `EEE4126F` (16 cr), `EEE4118F` (16 cr), `EEE4121F` (16 cr), `EEE4114F` (16 cr), `EEE4117F` (16 cr), `HUB4049F` (16 cr).
 
 #### C. Electrical and Computer Engineering (EC / EB022)
 * **Core Courses (33 courses for 2026)**:
@@ -55,7 +55,19 @@ To qualify for graduation (`QUAL`), a student must satisfy three conditions:
   1. Select at least **2** courses from: `CSC2002S`, `EEE3093S`, `EEE3094S`.
   2. Select at least **2** courses from: `EEE4114F`, `EEE4118F`, `EEE4120F`, `EEE4121F`.
 * **Credit-Based Electives (cecore)**: Select courses totaling at least **48 credits** from:
-  `EEE4114F` (16 cr), `EEE4118F` (20 cr), `EEE4120F` (20 cr), `EEE4121F` (20 cr), `CSC3002F` (15 cr), `CSC3003S` (15 cr), `CSC3021F` (15 cr), `CSC3022F` (15 cr), `CSC3022H` (15 cr), `CSC3023F` (15 cr), `HUB4049F` (8 cr).
+  `EEE4114F` (16 cr), `EEE4118F` (16 cr), `EEE4120F` (16 cr), `EEE4121F` (16 cr), `CSC3002F` (36 cr), `CSC3003S` (36 cr), `CSC3021F` (36 cr), `CSC3022F` (36 cr), `CSC3022H` (36 cr), `CSC3023F` (36 cr), `HUB4049F` (16 cr).
+
+#### D. Standard Course Credit Mapping
+When verifying student credit totals or estimating future credit expectations for unregistered courses, refer to the standard course credit mapping:
+* **0 credits:** `EEE1000X`, `EEE3000X`
+* **8 credits:** `AXL1200S`, `CON2026S`, `EEE2048F`, `EEE2048S`, `EEE3088F`, `EEE3097S`, `EEE3098S`, `EEE3099S`, `EEE4124C`, `MEC2026S`
+* **10 credits:** `CML4607F`, `CML4607Z`
+* **12 credits:** `EEE1008F`, `EEE1009S`, `HUB4045F`
+* **16 credits:** `ASL1200S`, `AXL1001S`, `AXL1301S`, `CAS1001S`, `CAS2001S`, `CSC1017`, `EEE2044S`, `EEE2045F`, `EEE2046F`, `EEE2046S`, `EEE2047S`, `EEE3089F`, `EEE3090F`, `EEE3091F`, `EEE3092F`, `EEE3093S`, `EEE3094S`, `EEE3096S`, `EEE3100S`, `EEE4113F`, `EEE4114F`, `EEE4117F`, `EEE4118F`, `EEE4119F`, `EEE4120F`, `EEE4121F`, `EEE4125C`, `EEE4126F`, `HUB4049F`, `MAM2083F`, `MAM2083S`, `MAM2084F`, `MAM2084S`, `MEC1009F`, `MEC1009S`, `MEC2045S`, `MEC2047F`, `PHY2010S`
+* **18 credits:** `COMPSTUD` (default), `CSC1015F`, `CSC1015S`, `CSC1016S`, `EGS1003S`, `MAM1020F`, `MAM1020S`, `MAM1021F`, `MAM1021S`, `PHY1012F`, `PHY1012S`, `PHY1013F`, `PHY1013S`
+* **24 credits:** `CSC2001F`, `CSC2002S`
+* **36 credits:** `CSC3002F`, `CSC3003S`, `CSC3021F`, `CSC3022F`, `CSC3022H`, `CSC3023F`, `MAM1000W`
+* **40 credits:** `EEE4022F`, `EEE4022S`
 
 ---
 
