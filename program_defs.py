@@ -3,7 +3,11 @@ from typing import List, Dict, Union, Any
 # --- Programme Definitions ---
 
 ME_CODE = 'EB011'
-ME_CORE = [
+EE_CODE = 'EB009'
+EC_CODE = 'EB022'
+
+# --- 2026 Core & Electives (Curriculum Year >= 2026) ---
+ME_CORE_2026 = [
     'CSC1015F', 'EEE1008F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 
     'CSC1016S', 'EEE1009S', 'MAM1021S', 'PHY1013S', 'EEE1000X', 
     'EEE2045F', 'EEE2046F', 'EEE2048S', 'MAM2083F', 'MEC1009F', 
@@ -12,18 +16,14 @@ ME_CORE = [
     'EEE3094S', 'EEE3096S', 'EEE3099S', 'MEC2045S', 'COMPSTUD', 'EEE3000X', 
     'EEE4113F', 'CML4607F', 'EEE4125C', 'EEE4124C', 'EEE4022S'
 ]
-# Note: number-based electives group definition. Each inner list has the format [number_required, course_code_1, course_code_2, ...].
-ME_NECORE = [
+ME_NECORE_2026 = [
     [2, 'EEE4117F', 'EEE4118F', 'EEE4119F'] 
 ]
-# Note: credit-based electives group definition. Each group has the format [min_credits_required, course_code_1, ...].
-ME_CECORE = [
-    [48, 'EEE4117F', 'EEE4118F', 'EEE4119F', 'EEE4114F', 
-    'EEE4120F', 'HUB4045F', 'HUB4049F']
+ME_CECORE_2026 = [
+    [48, 'EEE4117F', 'EEE4118F', 'EEE4119F', 'EEE4114F', 'EEE4120F', 'HUB4049F']
 ]
 
-EE_CODE = 'EB009'
-EE_CORE = [
+EE_CORE_2026 = [
     'CSC1015F', 'EEE1008F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 
     'CSC1016S', 'EEE1009S', 'MAM1021S', 'PHY1013S', 'EEE1000X', 
     'EEE2045F', 'EEE2046F', 'EEE2048S', 'MAM2083F', 'MEC1009F', 
@@ -32,16 +32,14 @@ EE_CORE = [
     'EEE3093S', 'EEE3094S', 'EEE3098S', 'EEE3100S', 'COMPSTUD', 'EEE3000X', 
     'EEE4113F', 'CML4607F', 'EEE4125C', 'EEE4124C', 'EEE4022S'
 ]
-EE_NECORE = [
+EE_NECORE_2026 = [
     [1, 'EEE4126F', 'EEE4118F', 'EEE4121F']
 ]
-EE_CECORE = [
-    [48, 'EEE4126F', 'EEE4118F', 'EEE4121F', 'EEE4114F',
-    'EEE4117F', 'HUB4049F', 'HUB4049F']
+EE_CECORE_2026 = [
+    [48, 'EEE4126F', 'EEE4118F', 'EEE4121F', 'EEE4114F', 'EEE4117F', 'HUB4049F']
 ]
 
-EC_CODE = 'EB022'
-EC_CORE = [
+EC_CORE_2026 = [
     'CSC1015F', 'EEE1008F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 
     'CSC1016S', 'EEE1009S', 'MAM1021S', 'PHY1013S', 'EEE1000X', 
     'EEE2045F', 'EEE2046F', 'EEE2048S', 'MAM2083F', 'MEC1009F', 
@@ -50,37 +48,165 @@ EC_CORE = [
     'EEE3096S', 'EEE3097S', 'COMPSTUD', 'EEE3000X', 
     'EEE4113F', 'CML4607F', 'EEE4125C', 'EEE4124C', 'EEE4022S'
 ]
-EC_NECORE = [
+EC_NECORE_2026 = [
     [2, 'CSC2002S', 'EEE3093S', 'EEE3094S'], 
-    [2, 'EEE4114F','EEE4118F','EEE4120F', 'EEE4121F']
+    [2, 'EEE4114F', 'EEE4118F', 'EEE4120F', 'EEE4121F']
 ]
-EC_CECORE = [
+EC_CECORE_2026 = [
     [48, 'EEE4114F', 'EEE4118F', 'EEE4120F', 'EEE4121F',
-    'CSC3002F', 'CSC3003S', 'CSC3021F', 'CSC3022F', 'CSC3022H', 'CSC3023F', 'HUB4049F', 'HUB4049F']
+    'CSC3002F', 'CSC3003S', 'CSC3021F', 'CSC3022F', 'CSC3022H', 'CSC3023F', 'HUB4049F']
+]
+
+# --- 2025 Core & Electives (Curriculum Year == 2025) ---
+ME_CORE_2025 = [
+    'CSC1015F', 'EEE1006F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 
+    'ASL1200S', 'CSC1016S', 'EEE1007S', 'MAM1021S', 'PHY1013S', 'EEE1000X', 
+    'EEE2045F', 'EEE2046F', 'EEE2048F', 'MAM2083F', 'MEC1009F', 
+    'EEE2044S', 'EEE2047S', 'MAM2084S', 'CON2026S', 'PHY2010S', 
+    'EEE3088F', 'EEE3090F', 'EEE3091F', 'EEE3092F', 'MEC2047F', 
+    'EEE3094S', 'EEE3096S', 'EEE3099S', 'MEC2045S', 'COMPSTUD', 'EEE3000X', 
+    'EEE4113F', 'CML4607F', 'EEE4125C', 'EEE4124C', 'EEE4022S'
+]
+ME_NECORE_2025 = ME_NECORE_2026
+ME_CECORE_2025 = [
+    [48, 'EEE4117F', 'EEE4118F', 'EEE4119F', 'EEE4114F', 'EEE4120F', 'HUB4045F', 'HUB2005F', 'EEE4123C']
+]
+
+EE_CORE_2025 = [
+    'CSC1015F', 'EEE1006F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 
+    'ASL1200S', 'CSC1016S', 'EEE1007S', 'MAM1021S', 'PHY1013S', 'EEE1000X', 
+    'EEE2045F', 'EEE2046F', 'EEE2048F', 'MAM2083F', 'MEC1009F', 
+    'EEE2044S', 'EEE2047S', 'MAM2084S', 'CON2026S', 'PHY2010S', 
+    'EEE3088F', 'EEE3089F', 'EEE3090F', 'EEE3091F', 'EEE3092F', 
+    'EEE3093S', 'EEE3094S', 'EEE3098S', 'EEE3100S', 'COMPSTUD', 'EEE3000X', 
+    'EEE4113F', 'CML4607F', 'EEE4125C', 'EEE4124C', 'EEE4022S'
+]
+EE_NECORE_2025 = EE_NECORE_2026
+EE_CECORE_2025 = [
+    [48, 'EEE4126F', 'EEE4118F', 'EEE4121F', 'EEE4114F', 'EEE4117F', 'HUB4045F', 'HUB2005F', 'EEE4123C']
+]
+
+EC_CORE_2025 = [
+    'CSC1015F', 'EEE1006F', 'MAM1020F', 'MEC1003F', 'PHY1012F', 
+    'ASL1200S', 'CSC1016S', 'EEE1007S', 'MAM1021S', 'PHY1013S', 'EEE1000X', 
+    'EEE2045F', 'EEE2046F', 'EEE2048F', 'MAM2083F', 'MEC1009F', 
+    'EEE2044S', 'EEE2047S', 'MAM2084S', 'CON2026S', 'PHY2010S', 
+    'CSC2001F', 'EEE3088F', 'EEE3089F', 'EEE3090F', 'EEE3092F', 
+    'EEE3096S', 'EEE3097S', 'COMPSTUD', 'EEE3000X', 
+    'EEE4113F', 'CML4607F', 'EEE4125C', 'EEE4124C', 'EEE4022S'
+]
+EC_NECORE_2025 = EC_NECORE_2026
+EC_CECORE_2025 = [
+    [48, 'EEE4114F', 'EEE4118F', 'EEE4120F', 'EEE4121F',
+    'CSC3002F', 'CSC3003S', 'CSC3021F', 'CSC3022F', 'CSC3022H', 'CSC3023F', 'HUB4045F', 'HUB2005F', 'EEE4123C']
+]
+
+# --- 2022-2024 Core & Electives (Curriculum Year <= 2024) ---
+ME_CORE_2022_2024 = ME_CORE_2025
+ME_NECORE_2022_2024 = ME_NECORE_2025
+ME_CECORE_2022_2024 = [
+    [48, 'EEE4117F', 'EEE4118F', 'EEE4119F', 'EEE4114F', 'EEE4120F', 'HUB4045F', 'HUB2005F', 'EEE4123C', 'EEE2051L']
+]
+
+EE_CORE_2022_2024 = EE_CORE_2025
+EE_NECORE_2022_2024 = EE_NECORE_2025
+EE_CECORE_2022_2024 = [
+    [48, 'EEE4126F', 'EEE4118F', 'EEE4121F', 'EEE4114F', 'EEE4117F', 'HUB4045F', 'EEE4123C', 'EEE4122C', 'EEE4105C']
+]
+
+EC_CORE_2022_2024 = EC_CORE_2025
+EC_NECORE_2022_2024 = EC_NECORE_2025
+EC_CECORE_2022_2024 = [
+    [48, 'EEE4114F', 'EEE4118F', 'EEE4120F', 'EEE4121F',
+    'CSC3002F', 'CSC3003S', 'CSC3021F', 'CSC3022F', 'CSC3022H', 'CSC3023F', 'HUB4045F', 'EEE4122C', 'EEE4105C']
 ]
 
 # Combine all programme specifications into a single configurations list.
+# Match occurs by 'code' and student's entry year ('start_year' <= yfdreg <= 'end_year').
 PROGRAM_SPECS: List[Dict[str, Any]] = [
+    # Mechatronics (ME)
     {
         'prog': 'ME', 
-        'code': ME_CODE,  
-        'core': ME_CORE,  
-        'necore': ME_NECORE,  
-        'cecore': ME_CECORE
+        'code': ME_CODE,
+        'start_year': 2026,
+        'end_year': 9999,
+        'core': ME_CORE_2026,  
+        'necore': ME_NECORE_2026,  
+        'cecore': ME_CECORE_2026
+    },
+    {
+        'prog': 'ME', 
+        'code': ME_CODE,
+        'start_year': 2025,
+        'end_year': 2025,
+        'core': ME_CORE_2025,  
+        'necore': ME_NECORE_2025,  
+        'cecore': ME_CECORE_2025
+    },
+    {
+        'prog': 'ME', 
+        'code': ME_CODE,
+        'start_year': 0,
+        'end_year': 2024,
+        'core': ME_CORE_2022_2024,  
+        'necore': ME_NECORE_2022_2024,  
+        'cecore': ME_CECORE_2022_2024
+    },
+    # Electrical Engineering (EE)
+    {
+        'prog': 'EE', 
+        'code': EE_CODE,
+        'start_year': 2026,
+        'end_year': 9999,
+        'core': EE_CORE_2026,  
+        'necore': EE_NECORE_2026,  
+        'cecore': EE_CECORE_2026
     },
     {
         'prog': 'EE', 
-        'code': EE_CODE,  
-        'core': EE_CORE,  
-        'necore': EE_NECORE,  
-        'cecore': EE_CECORE
+        'code': EE_CODE,
+        'start_year': 2025,
+        'end_year': 2025,
+        'core': EE_CORE_2025,  
+        'necore': EE_NECORE_2025,  
+        'cecore': EE_CECORE_2025
+    },
+    {
+        'prog': 'EE', 
+        'code': EE_CODE,
+        'start_year': 0,
+        'end_year': 2024,
+        'core': EE_CORE_2022_2024,  
+        'necore': EE_NECORE_2022_2024,  
+        'cecore': EE_CECORE_2022_2024
+    },
+    # Electrical and Computer Engineering (EC)
+    {
+        'prog': 'EC', 
+        'code': EC_CODE,
+        'start_year': 2026,
+        'end_year': 9999,
+        'core': EC_CORE_2026,  
+        'necore': EC_NECORE_2026,  
+        'cecore': EC_CECORE_2026
     },
     {
         'prog': 'EC', 
-        'code': EC_CODE,  
-        'core': EC_CORE,  
-        'necore': EC_NECORE,  
-        'cecore': EC_CECORE
+        'code': EC_CODE,
+        'start_year': 2025,
+        'end_year': 2025,
+        'core': EC_CORE_2025,  
+        'necore': EC_NECORE_2025,  
+        'cecore': EC_CECORE_2025
+    },
+    {
+        'prog': 'EC', 
+        'code': EC_CODE,
+        'start_year': 0,
+        'end_year': 2024,
+        'core': EC_CORE_2022_2024,  
+        'necore': EC_NECORE_2022_2024,  
+        'cecore': EC_CECORE_2022_2024
     }
 ]
 
@@ -108,6 +234,8 @@ COURSE_CREDITS: Dict[str, int] = {
     'CSC3022H': 36,
     'CSC3023F': 36,
     'EEE1000X': 0,
+    'EEE1006F': 12,
+    'EEE1007S': 12,
     'EEE1008F': 12,
     'EEE1009S': 12,
     'EEE2044S': 16,
@@ -117,6 +245,7 @@ COURSE_CREDITS: Dict[str, int] = {
     'EEE2047S': 16,
     'EEE2048F': 8,
     'EEE2048S': 8,
+    'EEE2051L': 8,
     'EEE3000X': 0,
     'EEE3088F': 8,
     'EEE3089F': 16,
@@ -130,8 +259,19 @@ COURSE_CREDITS: Dict[str, int] = {
     'EEE3098S': 8,
     'EEE3099S': 8,
     'EEE3100S': 16,
-    'EEE4022S': 40,
+    'EEE4006C': 8,
     'EEE4022F': 40,
+    'EEE4022S': 40,
+    'EEE4051C': 8,
+    'EEE4086F': 16,
+    'EEE4087F': 16,
+    'EEE4088F': 8,
+    'EEE4089F': 16,
+    'EEE4090F': 16,
+    'EEE4093F': 16,
+    'EEE4099F': 16,
+    'EEE4104C': 8,
+    'EEE4105C': 10,
     'EEE4113F': 16,
     'EEE4114F': 16,
     'EEE4117F': 16,
@@ -139,9 +279,15 @@ COURSE_CREDITS: Dict[str, int] = {
     'EEE4119F': 16,
     'EEE4120F': 16,
     'EEE4121F': 16,
+    'EEE4122C': 8,
+    'EEE4123C': 8,
     'EEE4124C': 8,
     'EEE4125C': 16,
     'EEE4126F': 16,
+    'END1019L': 18,
+    'END1019P': 18,
+    'END1019Z': 18,
+    'HUB2005F': 8,
     'HUB4045F': 12,
     'HUB4049F': 16,
     'MAM1000W': 36,
@@ -156,9 +302,11 @@ COURSE_CREDITS: Dict[str, int] = {
     'MEC1003F': 8,
     'MEC1009F': 16,
     'MEC1009S': 16,
+    'MEC2023F': 16,
     'MEC2026S': 8,
     'MEC2045S': 16,
     'MEC2047F': 16,
+    'MEC4063C': 8,
     'PHY1012F': 18,
     'PHY1012S': 18,
     'PHY1013F': 18,
@@ -181,11 +329,12 @@ CourseEquivsList = List[List[Union[str, List[str]]]]
 
 COURSE_EQUIVALENCIES: CourseEquivsList = [
     ['AXL1200S', 'AXL1001S', 'CAS1001S', 'CAS2001S', 'AXL1301S', 'ASL1200S'],
+    ['ASL1200S', 'AXL1200S', 'AXL1001S', 'CAS1001S', 'CAS2001S', 'AXL1301S'],
     ['CSC1015F', 'CSC1015S', 'EEE1003W'],
     ['CSCxxxxx', 'CSC3022H', 'CSC3023F'],
     ['EEE1005W', 'EEE1004W', ['EEE1006F', 'EEE1007S']],
-    ['EEE1007S', 'EEE1005W'],
-    ['EEE1006F', 'EEE1005W'],
+    ['EEE1007S', 'EEE1009S', 'EEE1005W'],
+    ['EEE1006F', 'EEE1008F', 'EEE1005W'],
     ['EEE1009S', 'EEE1007S'],
     ['EEE1008F', 'EEE1006F'],
     ['MAM1020F', 'MAM1020S', 'MAM1023F', 'MAM1023S', 'MAM1017F', 'MAM1017S', 'MAM1003W', 'MAM1000W', 'END1017F', 'END1017S', 'END1007W', 'END1020F', 'END1020S'],
@@ -208,14 +357,15 @@ COURSE_EQUIVALENCIES: CourseEquivsList = [
     ['EEE3055W', 'EEE3055F'],
     ['EEE3073S', 'EEE2048F'],
     ['EEE3031S', 'EEE3091F'],
-    ['MEC2026S', 'MEC2026F'],
-    ['MEC2023F', 'MEC2023S'],
+    ['MEC2026S', 'MEC2026F', 'CON2026S'],
+    ['CON2026S', 'MEC2026S', 'MEC2026F'],
+    ['MEC2023F', 'MEC2023S', 'MEC2047F', 'MEC2047S'],
     ['EEE2044S', 'EEE2038W'],
     ['EEE2045F', 'EEE2040F'],
     ['EEE2046F', 'EEE2046S'],
     ['EEE3090F', 'EEE3068F'],
     ['EEE3091F', 'EEE3031S'],
-    ['EEE2048F', 'EEE3073S'],
+    ['EEE2048F', 'EEE2048S', 'EEE3073S'],
     ['EEE2048S', 'EEE2048F'],
     ['EEE3092F', 'EEE3086F'],
     ['EEE3093S', 'EEE3083F', 'EEE3084W', 'EEE3085S'],
@@ -223,11 +373,11 @@ COURSE_EQUIVALENCIES: CourseEquivsList = [
     ['EEE3096S', 'EEE3074W'],
     ['EEE3100S', 'EEE3057S'],
     ['EEE4114F', 'EEE4001F'],
-    ['EEE4006C', 'EEE4006F'],
+    ['EEE4006C', 'EEE4006F', 'EEE4125C'],
     ['EEE4113F', 'EEE4036C', 'EEE4036A'],
-    ['EEE4051C', 'EEE4051F'],
+    ['EEE4051C', 'EEE4051F', 'EEE4125C'],
     ['EEE4120F', 'EEE4084F'],
-    ['EEE4086F', 'EEE4086F'], # Self-reference, redundant but preserved
+    ['EEE4086F', 'EEE4086F'],
     ['EEE4121F', 'EEE4087F'],
     ['EEE4122C', 'EEE4088F'],
     ['EEE4125C', ['EEE4006C', 'EEE4051C']],
@@ -240,13 +390,9 @@ COURSE_EQUIVALENCIES: CourseEquivsList = [
     ['MEC1009F', 'MAM1042S'],
     ['MEC1009F', 'MEC1009S'],
     ['MEC2049F', 'MEC2025F'],
-    ['MEC2026S', 'CON2026S'],
     ['MEC2047F', 'MEC2023F', 'MEC2023S', 'MEC2047S'],
     ['EEE4022S', 'EEE4022F'],
     ['EEE4036C', 'EEE4036A', 'EEE4113C'],
-    ['EEE4006C', 'EEE4006F'],
-    ['EEE4051C', 'EEE4051F'],
-    ['EEE4113F', 'EEE4036A', 'EEE4036C'],
     ['MEC4022Z', 'MEC4044Z', 'MEC4054Z'],
     ['MEC3035S', 'MEC3035F'],
     ['MEC4063C', 'MEC4044Z', 'MEC4054Z', 'EEE4124C'],

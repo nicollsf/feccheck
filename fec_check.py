@@ -50,11 +50,13 @@ class FECCheck:
                 cclist.extend(item[1:])
             for item in pg.get('cecore', []):  # add courses from cecore
                 cclist.extend(item[1:])
-            # Always ensure AXL1200S and MEC2026S are in cclist for backward compatibility
-            if 'AXL1200S' not in cclist:
-                cclist.append('AXL1200S')
-            if 'MEC2026S' not in cclist:
-                cclist.append('MEC2026S')
+            # Ensure only one canonical variant of the complementary/dynamics courses is in cclist for lookup
+            if any(c in cclist for c in ['ASL1200S', 'AXL1200S']):
+                if 'AXL1200S' in cclist: cclist.remove('AXL1200S')
+                if 'ASL1200S' not in cclist: cclist.append('ASL1200S')
+            if any(c in cclist for c in ['CON2026S', 'MEC2026S']):
+                if 'MEC2026S' in cclist: cclist.remove('MEC2026S')
+                if 'CON2026S' not in cclist: cclist.append('CON2026S')
             pg['cclist'] = sorted(list(set(cclist)))  # store unique
         cequivs = COURSE_EQUIVALENCIES
         pdefs = {'pgs': pgs, 'cequivs': cequivs, 'cinfo': cinfo}
@@ -844,6 +846,21 @@ class FECCheck:
                 'RET_FECR': ret_limit,  # Returning FECR limit
             }
 
+        # Check if the only unsatisfied requirements are EEE1000X and/or EEE3000X
+        is_quas_practical = False
+        quas_hons = ''
+        tcert_df = qres.get('tcert')
+        if tcert_df is not None:
+            unsat_reqs = tcert_df[~tcert_df['Sat']]['Req'].tolist()
+            if unsat_reqs and all(r in ['EEE1000X', 'EEE3000X'] for r in unsat_reqs):
+                if qres['totalcr'] >= qres['rcurcr']:
+                    qres_copy = qres.copy()
+                    tcert_copy = tcert_df.copy()
+                    tcert_copy.loc[tcert_copy['Req'].isin(['EEE1000X', 'EEE3000X']), 'Sat'] = True
+                    qres_copy['tcert'] = tcert_copy
+                    _, quas_hons = self.isqual(qres_copy)
+                    is_quas_practical = True
+
         # Progression code decision tree
         pc = 'CONT' # Default to CONT
         pmess = ''
@@ -851,6 +868,9 @@ class FECCheck:
         if qualf:
             pc = 'QUAL'
             pmess = hons
+        elif is_quas_practical:
+            pc = 'QUAS'
+            pmess = f"Outstanding Practical Training; {quas_hons}" if quas_hons else "Outstanding Practical Training"
         elif leavf:
             pc = 'LEAV'
             pmess = strec['leavmess']
@@ -913,6 +933,45 @@ class FECCheck:
         nfcy = pip_failed.sum()
         ccyfailed = srec_df[pip_failed]['course'].tolist()
         
+        # Determine curriculum version applied and across-variant registrations
+        if yfdreg >= 2026:
+            cur_label = "2026 spec"
+        elif yfdreg == 2025:
+            cur_label = "2025 spec"
+        else:
+            cur_label = f"2018-2024 spec (entered {yfdreg})"
+            
+        comments_list = [f"Curriculum: {cur_label}"]
+        
+        tcert_df = qres.get('tcert')
+        if tcert_df is not None and not tcert_df.empty:
+            av_matches = []
+            for _, row in tcert_df.iterrows():
+                req = row['Req']
+                sat = row['Sat']
+                satev = row['Satev']
+                if sat and satev:
+                    # Ignore elective rows (ECcred or ECnum)
+                    if not req.startswith(('ECnum', 'ECcred')):
+                        ev_courses = []
+                        for ev in satev.split(','):
+                            code_part = ev.split('(')[0].strip()
+                            if code_part:
+                                ev_courses.append(code_part)
+                        
+                        is_across_variant = False
+                        for ev_c in ev_courses:
+                            if ev_c != req:
+                                is_across_variant = True
+                                break
+                        
+                        if is_across_variant:
+                            av_matches.append(f"{req} satisfied by {satev}")
+            if av_matches:
+                comments_list.append("Across-variant: " + "; ".join(av_matches))
+                
+        comments_str = ". ".join(comments_list)
+        
         # Store results
         pcs = {
             'qualf': qualf, 'hons': hons,
@@ -927,7 +986,8 @@ class FECCheck:
             'tcert': qres['tcert'],
             'suppdes': suppdes, 'suppdecr': suppdecr,
             'cmissing': cmissing,
-            'nfcy': int(nfcy), 'ccyfailed': ccyfailed
+            'nfcy': int(nfcy), 'ccyfailed': ccyfailed,
+            'comments': comments_str
         }
         return pcs
         
@@ -1016,7 +1076,12 @@ class FECCheck:
         bprog = strec['sinfo'][3] # acadprog (col 4 in MATLAB)
         bprogb = bprog[:2] + '0' + bprog[3:] # Standardize to non-Aspect for lookup
         
-        pg_list = [p for p in pgs if p.get('code') == bprogb]
+        yfdreg = self.firstdeptreg(strec)
+        pg_list = [p for p in pgs if p.get('code') == bprogb and p.get('start_year', 0) <= yfdreg <= p.get('end_year', 9999)]
+        if not pg_list:
+            # Fallback to code only if no year-specific spec matches
+            pg_list = [p for p in pgs if p.get('code') == bprogb]
+            
         if not pg_list:
             return pd.DataFrame({'Req': [], 'Sat': [], 'Satev': []})
         pg = pg_list[0]
@@ -1089,10 +1154,11 @@ class FECCheck:
         yfdreg = self.firstdeptreg(strec)
         if yfdreg < 2025:
             # For backward compatibility, pre-2025 students must complete ASL1200S and CON2026S (MEC2026S) equivalents
-            if 'AXL1200S' not in core:
-                core.append('AXL1200S')
-            if 'MEC2026S' not in core:
-                core.append('MEC2026S')
+            # Only append if neither variant is already in the core list to prevent double-reporting
+            if 'ASL1200S' not in core and 'AXL1200S' not in core:
+                core.append('ASL1200S')
+            if 'CON2026S' not in core and 'MEC2026S' not in core:
+                core.append('CON2026S')
         
         for core_req in core:
             is_satisfied, sat_evidence = check_course_satisfied(core_req)
@@ -1167,6 +1233,7 @@ class FECCheck:
     header_comments_map = {
         'pc': "Progression code to be reported",
         'pmess': "Message explaining reported progression code",
+        'comments': "Curriculum version applied and explanations of across-variant course matches",
         'aspect': "At some stage student was registered under ASPECT code",
         'ayosn': "Student AYOS number from CRS",
         'eayosn': "Estimated AYOS based on credits remaining",
@@ -1308,6 +1375,7 @@ class FECCheck:
                     'cfcy': ','.join(pcs['ccyfailed']),
                     'np1crpy': pcs['np1crpy'],
                     'np2crpy': pcs['np2crpy'],
+                    'comments': pcs.get('comments', ''),
                 })
         
         otab = pd.DataFrame(output_data)
@@ -1391,6 +1459,7 @@ class FECCheck:
                 'cfcy': pcres['cfcy'],
                 'np1crpy': pcres['pcs']['np1crpy'],
                 'np2crpy': pcres['pcs']['np2crpy'],
+                'comments': pcres['pcs'].get('comments', ''),
             })
         
         otab = pd.DataFrame(output_data)

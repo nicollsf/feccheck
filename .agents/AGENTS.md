@@ -39,10 +39,13 @@ The data flows through the system primarily as a list of dictionaries called `st
 
 ## 5. Important Quirks & Guidelines for AI Agents
 
-1. **MATLAB Legacy**: This codebase was ported from a legacy MATLAB script. You will see artifacts like variable names (`ia`, `ib`, `pip`), 1-based indexing comments, and logic structured sequentially rather than in highly nested objects. Respect the existing code style unless explicitly asked to refactor.
-2. **Pandas Mutability**: The simulation methods in `fec_check.py` (e.g., `flagsuppspassed`, `flagpassedwithmark`) work by creating `deep=True` copies of a student's `ystats` and `srec` DataFrames, mutating the marks to simulate a pass/fail, and recalculating the GPAs/credits. Be very careful with pandas `.loc` vs `.iloc` when modifying these frames.
-3. **Course Equivalencies**: Course equivalencies in `program_defs.py` are complex. A requirement might be satisfied by a single alternative string (e.g., `'MAM1000W'`), or a *list* of courses that must ALL be passed (e.g., `['EEE4006C', 'EEE4051C']`). Always account for nested lists when doing equivalency lookups.
-4. **Duplicate Course Dumps**: The raw CRS CSV sometimes prints the exact same year of courses multiple times if a student is dual-registered or changing programs. `crs_parser.py` drops these duplicates to prevent credit-count inflation.
+1. **MATLAB Legacy**: Respect the sequential structure and existing variables.
+2. **Pandas Mutability**: Be careful with mutations of `srec` and `ystats` in simulation functions.
+3. **Course Equivalencies**: Ensure course equivalencies are defined symmetrically (e.g., if `AXL1200S` satisfies `ASL1200S`, then `ASL1200S` must also have an equivalency mapping to satisfy `AXL1200S`).
+4. **Duplicate Course Dumps**: De-duplicate rows in `crs_parser.py` to prevent credit double-counting.
+5. **Curriculum Year Specs**: The checker selects specifications from `program_defs.py` dynamically based on the student's entry year (`yfdreg`), supporting distinct specifications for **2026 or later**, **2025**, and **2018-2024** cohorts.
+6. **QUAS for Practical Training**: If a student is *only* missing the 0-credit core courses `EEE1000X` and/or `EEE3000X` but has met all other academic requirements and credits, they are coded as **`QUAS`** with the message `"Outstanding Practical Training"` instead of being subjected to normal credit-based exclusion limits.
+7. **Explanatory Comments Column**: The Excel spreadsheets include a trailing `comments` column showing the curriculum spec year applied to the student and a trace of all across-variant course equivalencies used.
 
 ## 6. Student Advising Workflow & Priming
 In addition to the batch FEC simulations run via Python, the system supports interactive student advising via Gemini:

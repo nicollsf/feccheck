@@ -29,40 +29,53 @@ To qualify for graduation (`QUAL`), a student must satisfy three conditions:
 3. **Elective Requirements**: List-based (`necore`) and credit-based (`cecore`) electives must be satisfied.
 
 ### Program Core & Elective Specifications
+
 #### A. Mechatronics (ME / EB011)
-* **Core Courses (35 courses for 2026)**:
-  `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `PHY2010S`, `EEE3088F`, `EEE3090F`, `EEE3091F`, `EEE3092F`, `MEC2047F`, `EEE3094S`, `EEE3096S`, `EEE3099S`, `MEC2045S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
-  *(Note: Pre-2025 registration students additionally require legacy core courses `AXL1200S` and `MEC2026S`.)*
-* **Number-Based Electives (necore)**: Select at least **2** courses from:
+* **Core Courses by Curriculum Year**:
+  * **2026 or later (`yfdreg >= 2026`)**:
+    `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `PHY2010S`, `EEE3088F`, `EEE3090F`, `EEE3091F`, `EEE3092F`, `MEC2047F`, `EEE3094S`, `EEE3096S`, `EEE3099S`, `MEC2045S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
+  * **2018 to 2025 (`2018 <= yfdreg <= 2025`)**:
+    Same as 2026, but with introductory courses `EEE1006F` and `EEE1007S` instead of `EEE1008F`/`EEE1009S`, communication course `EEE2048F` instead of `EEE2048S`, and additionally requires complementary studies core courses `ASL1200S` (or `AXL1200S` equivalent) and `CON2026S` (or `MEC2026S` equivalent).
+* **Number-Based Electives (`necore`)**: Select at least **2** courses from:
   `EEE4117F`, `EEE4118F`, `EEE4119F`.
-* **Credit-Based Electives (cecore)**: Select courses totaling at least **48 credits** from:
-  `EEE4117F` (16 cr), `EEE4118F` (16 cr), `EEE4119F` (16 cr), `EEE4114F` (16 cr), `EEE4120F` (16 cr), `HUB4045F` (12 cr), `HUB4049F` (16 cr).
+* **Credit-Based Electives (`cecore`)**: Select courses totaling at least **48 credits** from:
+  * **2026 or later**: `EEE4117F` (16 cr), `EEE4118F` (16 cr), `EEE4119F` (16 cr), `EEE4114F` (16 cr), `EEE4120F` (16 cr), `HUB4049F` (16 cr).
+  * **2025**: Same as 2026, but includes `HUB4045F` (12 cr), `HUB2005F` (8 cr), and `EEE4123C` (8 cr) instead of `HUB4049F`.
+  * **2018 to 2024**: Same as 2025, but additionally includes legacy elective `EEE2051L` (8 cr).
 
 #### B. Electrical (EE / EB009)
-* **Core Courses (35 courses for 2026)**:
-  `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `PHY2010S`, `EEE3088F`, `EEE3089F`, `EEE3090F`, `EEE3091F`, `EEE3092F`, `EEE3093S`, `EEE3094S`, `EEE3098S`, `EEE3100S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
-  *(Note: Pre-2025 registration students additionally require legacy core courses `AXL1200S` and `MEC2026S`.)*
-* **Number-Based Electives (necore)**: Select at least **1** course from:
+* **Core Courses by Curriculum Year**:
+  * **2026 or later (`yfdreg >= 2026`)**:
+    `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `PHY2010S`, `EEE3088F`, `EEE3089F`, `EEE3090F`, `EEE3091F`, `EEE3092F`, `EEE3093S`, `EEE3094S`, `EEE3098S`, `EEE3100S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
+  * **2018 to 2025 (`2018 <= yfdreg <= 2025`)**:
+    Same as 2026, but with introductory courses `EEE1006F` and `EEE1007S` instead of `EEE1008F`/`EEE1009S`, communication course `EEE2048F` instead of `EEE2048S`, and additionally requires complementary studies core courses `ASL1200S` (or `AXL1200S` equivalent) and `CON2026S` (or `MEC2026S` equivalent).
+* **Number-Based Electives (`necore`)**: Select at least **1** course from:
   `EEE4126F`, `EEE4118F`, `EEE4121F`.
-* **Credit-Based Electives (cecore)**: Select courses totaling at least **48 credits** from:
-  `EEE4126F` (16 cr), `EEE4118F` (16 cr), `EEE4121F` (16 cr), `EEE4114F` (16 cr), `EEE4117F` (16 cr), `HUB4049F` (16 cr).
+* **Credit-Based Electives (`cecore`)**: Select courses totaling at least **48 credits** from:
+  * **2026 or later**: `EEE4126F` (16 cr), `EEE4118F` (16 cr), `EEE4121F` (16 cr), `EEE4114F` (16 cr), `EEE4117F` (16 cr), `HUB4049F` (16 cr).
+  * **2025**: Same as 2026, but includes `HUB4045F` (12 cr), `HUB2005F` (8 cr), and `EEE4123C` (8 cr) instead of `HUB4049F`.
+  * **2018 to 2024**: Same as 2025, but additionally includes legacy electives `EEE4122C` (8 cr) and `EEE4105C` (10 cr).
 
 #### C. Electrical and Computer Engineering (EC / EB022)
-* **Core Courses (33 courses for 2026)**:
-  `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `PHY2010S`, `CSC2001F`, `EEE3088F`, `EEE3089F`, `EEE3090F`, `EEE3092F`, `EEE3096S`, `EEE3097S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
-  *(Note: Pre-2025 registration students additionally require legacy core courses `AXL1200S` and `MEC2026S`.)*
-* **Number-Based Electives (necore)**: Must satisfy BOTH of these conditions:
+* **Core Courses by Curriculum Year**:
+  * **2026 or later (`yfdreg >= 2026`)**:
+    `CSC1015F`, `EEE1008F`, `MAM1020F`, `MEC1003F`, `PHY1012F`, `CSC1016S`, `EEE1009S`, `MAM1021S`, `PHY1013S`, `EEE1000X`, `EEE2045F`, `EEE2046F`, `EEE2048S`, `MAM2083F`, `MEC1009F`, `EEE2044S`, `EEE2047S`, `MAM2084S`, `PHY2010S`, `CSC2001F`, `EEE3088F`, `EEE3089F`, `EEE3090F`, `EEE3092F`, `EEE3096S`, `EEE3097S`, `COMPSTUD`, `EEE3000X`, `EEE4113F`, `CML4607F`, `EEE4125C`, `EEE4124C`, `EEE4022S`.
+  * **2018 to 2025 (`2018 <= yfdreg <= 2025`)**:
+    Same as 2026, but with introductory courses `EEE1006F` and `EEE1007S` instead of `EEE1008F`/`EEE1009S`, communication course `EEE2048F` instead of `EEE2048S`, and additionally requires complementary studies core courses `ASL1200S` (or `AXL1200S` equivalent) and `CON2026S` (or `MEC2026S` equivalent).
+* **Number-Based Electives (`necore`)**: Must satisfy BOTH of these conditions:
   1. Select at least **2** courses from: `CSC2002S`, `EEE3093S`, `EEE3094S`.
   2. Select at least **2** courses from: `EEE4114F`, `EEE4118F`, `EEE4120F`, `EEE4121F`.
-* **Credit-Based Electives (cecore)**: Select courses totaling at least **48 credits** from:
-  `EEE4114F` (16 cr), `EEE4118F` (16 cr), `EEE4120F` (16 cr), `EEE4121F` (16 cr), `CSC3002F` (36 cr), `CSC3003S` (36 cr), `CSC3021F` (36 cr), `CSC3022F` (36 cr), `CSC3022H` (36 cr), `CSC3023F` (36 cr), `HUB4049F` (16 cr).
+* **Credit-Based Electives (`cecore`)**: Select courses totaling at least **48 credits** from:
+  * **2026 or later**: `EEE4114F` (16 cr), `EEE4118F` (16 cr), `EEE4120F` (16 cr), `EEE4121F` (16 cr), `CSC3002F` (36 cr), `CSC3003S` (36 cr), `CSC3021F` (36 cr), `CSC3022F` (36 cr), `CSC3022H` (36 cr), `CSC3023F` (36 cr), `HUB4049F` (16 cr).
+  * **2025**: Same as 2026, but includes `HUB4045F` (12 cr), `HUB2005F` (8 cr), and `EEE4123C` (8 cr) instead of `HUB4049F`.
+  * **2018 to 2024**: Same as 2025, but additionally includes legacy electives `EEE4122C` (8 cr) and `EEE4105C` (10 cr).
 
 #### D. Standard Course Credit Mapping
 When verifying student credit totals or estimating future credit expectations for unregistered courses, refer to the standard course credit mapping:
 * **0 credits:** `EEE1000X`, `EEE3000X`
-* **8 credits:** `AXL1200S`, `CON2026S`, `EEE2048F`, `EEE2048S`, `EEE3088F`, `EEE3097S`, `EEE3098S`, `EEE3099S`, `EEE4124C`, `MEC2026S`
-* **10 credits:** `CML4607F`, `CML4607Z`
-* **12 credits:** `EEE1008F`, `EEE1009S`, `HUB4045F`
+* **8 credits:** `AXL1200S`, `CON2026S`, `EEE2048F`, `EEE2048S`, `EEE3088F`, `EEE3097S`, `EEE3098S`, `EEE3099S`, `EEE4124C`, `MEC2026S`, `EEE2051L`, `HUB2005F`, `EEE4123C`, `EEE4122C`
+* **10 credits:** `CML4607F`, `CML4607Z`, `EEE4105C`
+* **12 credits:** `EEE1006F`, `EEE1007S`, `EEE1008F`, `EEE1009S`, `HUB4045F`
 * **16 credits:** `ASL1200S`, `AXL1001S`, `AXL1301S`, `CAS1001S`, `CAS2001S`, `CSC1017`, `EEE2044S`, `EEE2045F`, `EEE2046F`, `EEE2046S`, `EEE2047S`, `EEE3089F`, `EEE3090F`, `EEE3091F`, `EEE3092F`, `EEE3093S`, `EEE3094S`, `EEE3096S`, `EEE3100S`, `EEE4113F`, `EEE4114F`, `EEE4117F`, `EEE4118F`, `EEE4119F`, `EEE4120F`, `EEE4121F`, `EEE4125C`, `EEE4126F`, `HUB4049F`, `MAM2083F`, `MAM2083S`, `MAM2084F`, `MAM2084S`, `MEC1009F`, `MEC1009S`, `MEC2045S`, `MEC2047F`, `PHY2010S`
 * **18 credits:** `COMPSTUD` (default), `CSC1015F`, `CSC1015S`, `CSC1016S`, `EGS1003S`, `MAM1020F`, `MAM1020S`, `MAM1021F`, `MAM1021S`, `PHY1012F`, `PHY1012S`, `PHY1013F`, `PHY1013S`
 * **24 credits:** `CSC2001F`, `CSC2002S`
@@ -226,7 +239,9 @@ When assessing a student, the advisor evaluates their current/worst-case status 
 * **RENN (Readmission Required)**: Academically excluded. Needs to formally apply for readmission.
 * **FECR (FEC Review)**: Standard progression default due to low annual credits.
 * **Conditional States (Simulation-based)**:
-  * **QUAS (Qualified Assumed)**: The student's current status is not qualified, but if they pass outstanding supplementary/deferred exams (`suppdes`), their best-case status becomes `QUAL`.
+  * **QUAS (Qualified Assumed)**:
+    * The student's current status is not qualified, but if they pass outstanding supplementary/deferred exams (`suppdes`), their best-case status becomes `QUAL`.
+    * OR the student has satisfied all academic program credits and core requirements except for `EEE1000X` and/or `EEE3000X` (Practical Training), in which case they are coded as `QUAS` (with progression message `"Outstanding Practical Training"`).
   * **SUPP (Supps Required)**: Student's current status is `RENN` (excluded), but if they pass their supplementary/deferred exams they can achieve `CONT`.
   * **FECP (Possible CONT/FECR)**:
     * Current status is `FECR`, best-case status is `CONT` (if they pass supplementary exams).
